@@ -5,9 +5,10 @@ public class Ingredient {
     private int imageResourceId; // Drawable resource ID for the ingredient image
 
     // Constructor
-    public Ingredient(String name, String imageResourceId) {
+    public Ingredient(String name, String imageName, android.content.Context context) {
         this.name = name;
-        this.imageResourceId = imageResourceId;
+        // Convert drawable name to resource ID
+        this.imageResourceId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
     }
 
     // Getters

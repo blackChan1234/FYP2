@@ -10,7 +10,7 @@
         android:id="@+id/imageViewIngredient"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_ingredient_placeholder" /> <!-- Replace with actual drawable -->
+        android:src="@drawable/carbs" /> <!-- Replace with actual drawable -->
 
     <TextView
         android:id="@+id/textViewIngredientName"

@@ -127,4 +127,11 @@
         android:elevation="4dp"
         android:layout_marginTop="180dp"
         />
+    <Button
+        android:id="@+id/btnJumpToFoodRecommend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Food Recommendation"
+        android:visibility="gone" /> <!-- Initially hidden -->
+
 </RelativeLayout>

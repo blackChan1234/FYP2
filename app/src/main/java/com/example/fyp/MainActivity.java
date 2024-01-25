@@ -1,41 +1,84 @@
 package com.example.fyp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.List;
+import androidx.viewpager.widget.ViewPager;
+
 import android.os.Bundle;
 
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView nutritionFactsRecyclerView;
-    private RecyclerView ingredientsRecyclerView;
-    private List<NutritionFact> nutritionFactsList = new ArrayList<>();
-    private List<Ingredient> ingredientsList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.findrestaurants);
+        // Set the content view to your activity layout
+        setContentView(R.layout.activity_main); // Ensure this is your activity's layout file
 
-        nutritionFactsList.add(new NutritionFact("Calories", "484 kcal"));
-        ingredientsList.add(new Ingredient("Salmon", "@drawable/salmon"));
-        nutritionFactsRecyclerView = findViewById(R.id.nutritionFactsRecyclerView);
-        ingredientsRecyclerView = findViewById(R.id.ingredientsRecyclerView);
+        // Initialize TabLayout and ViewPager
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
+        ViewPager viewPager = findViewById(R.id.viewPager);
 
-        // Set up the adapters for both RecyclerViews
-        // Assuming you have lists for nutrition facts and ingredients
-        NutritionFactsAdapter nutritionFactsAdapter = new NutritionFactsAdapter(nutritionFactsList);
-        IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(ingredientsList);
+        // Setup the ViewPager with the sections adapter.
+        setupViewPager(viewPager);
 
-        nutritionFactsRecyclerView.setAdapter(nutritionFactsAdapter);
-        ingredientsRecyclerView.setAdapter(ingredientsAdapter);
-
-        // Set the layout manager to horizontal for both RecyclerViews
-        LinearLayoutManager horizontalLayoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        LinearLayoutManager horizontalLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-
-        nutritionFactsRecyclerView.setLayoutManager(horizontalLayoutManager1);
-        ingredientsRecyclerView.setLayoutManager(horizontalLayoutManager2);
+        // Connect the tab layout with the view pager. This will
+        //   1. Update the tab layout when the view pager is swiped
+        //   2. Update the view pager when a tab is selected
+        //   3. Set the tab layout's tab names with the view pager's adapter's titles by calling onPageTitle()
+        tabLayout.setupWithViewPager(viewPager);
     }
 
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        // Add Fragments to the adapter. Each fragment corresponds to a tab.
+        adapter.addFragment(new HomeFragment(), "Home");
+        adapter.addFragment(new RecommendFragment(), "Recommend");
+        adapter.addFragment(new BookingFragment(), "Booking");
+        adapter.addFragment(new MenuFragment(), "Menu");
+
+        // Set the adapter onto the view pager
+        viewPager.setAdapter(adapter);
+    }
+
+    // Assuming you have an adapter class that looks something like this
+    public class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
 }
