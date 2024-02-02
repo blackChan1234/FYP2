@@ -26,4 +26,6 @@ Home
     <string name="nutrition3"> 28g Carbs </string>
     <string name="nutrition4"> 30g Protein </string>
     <string name="close_button_description">CloseButton</string>
+    <string name="find_recipe">Find Recipe</string>
+    <string name="find_restaurants">Find Restaurants</string>
 </resources>

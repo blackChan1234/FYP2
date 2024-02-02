@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:fillViewport="true">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -63,57 +65,79 @@
         android:scaleType="centerCrop"/>
 
     <!-- Create a horizontal LinearLayout or use a RecyclerView for horizontal scrolling of Nutrition Facts and Ingredients -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/nutritionFactsRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mealImage"
-        android:layout_marginTop="16dp"/>
+        <!-- Assuming the mealImage and other views are correctly placed, we start from the Nutrition Facts label -->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ingredientsRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nutritionFactsRecyclerView"
-        android:layout_marginTop="8dp"/>
+        <TextView
+            android:id="@+id/nutritionFactsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nutrition Facts (per serving)"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mealImage"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"/>
 
-    <!-- Include your buttons for Find Restaurants and Find Recipe -->
-    <Button
-        android:id="@+id/findRestaurantButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Find Restaurants"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideLine"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="8dp"
-        android:layout_marginBottom="16dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/nutritionFactsRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nutritionFactsLabel"
+            android:layout_marginTop="8dp"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideLine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.50121653" />
+        <TextView
+            android:id="@+id/ingredientsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingredients"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nutritionFactsRecyclerView"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"/>
 
-    <Button
-        android:id="@+id/findRecipeButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Find Recipe"
-        app:layout_constraintStart_toEndOf="@+id/guideLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="8dp"
-        android:layout_marginBottom="16dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ingredientsRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ingredientsLabel"
+            android:layout_marginTop="8dp"/>
+
+
+        <!-- Include your buttons for Find Restaurants and Find Recipe -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.50" />
+        <Button
+            android:id="@+id/findRestaurantButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Find Restaurants"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideLine"
+            app:layout_constraintTop_toBottomOf="@id/ingredientsRecyclerView"
+        android:layout_margin="8dp"/>
+
+        <Button
+            android:id="@+id/findRecipeButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Find Recipe"
+            app:layout_constraintStart_toEndOf="@+id/guideLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ingredientsRecyclerView"
+        android:layout_margin="8dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
