@@ -16,6 +16,8 @@ public class foodrecommend extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.foodrecommend);
+
+        //example data
         nutritionFactsList.add(new NutritionFact("Calories", "484 kcal"));
         ingredientsList.add(new Ingredient("Salmon", "a001", this)); // Notice 'this' is passed for context
 
