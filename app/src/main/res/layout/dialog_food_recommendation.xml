@@ -15,7 +15,13 @@
         android:layout_marginTop="20dip"
         android:text="Today's recommendation is"
         android:textSize="24sp" />
-
+    <TextView
+        android:id="@+id/mealname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:text="@string/mealname"
+        android:textSize="16sp" />
     <ImageView
         android:id="@+id/food"
         android:layout_width="550dp"

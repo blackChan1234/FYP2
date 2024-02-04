@@ -28,4 +28,5 @@ Home
     <string name="close_button_description">CloseButton</string>
     <string name="find_recipe">Find Recipe</string>
     <string name="find_restaurants">Find Restaurants</string>
+    <string name="mealname" />
 </resources>

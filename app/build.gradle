@@ -21,13 +21,13 @@ android {
 
         python {
 //指定python路径 注意更换为自己的Python路径!!
-            buildPython "C:\\Users\\sam\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe"
+            buildPython("D:\\python\\python.exe")
 //安装第三方库
             pip {
-                install "opencv-python"
                 install "numpy"
             }
         }
+        useLibrary 'org.apache.http.legacy'
     }
 
     buildTypes {
