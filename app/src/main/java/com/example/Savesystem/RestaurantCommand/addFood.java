@@ -1,15 +1,15 @@
-package RestaurantCommand;
+package com.example.Savesystem.RestaurantCommand;
 
-import command.*;
-import Restaurant.*;
+import com.example.Savesystem.command.*;
+import com.example.Savesystem.Restaurant.*;
 
-public class addFood implements command {
+public class addFood implements command.command {
 
 	private comboMeal cm;
 	private Food f;
 	/**
 	 * 
-	 * @param r
+	 * @param cm
 	 * @param f
 	 */
 	public addFood(comboMeal cm, Food f) {

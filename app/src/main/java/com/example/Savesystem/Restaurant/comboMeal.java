@@ -1,4 +1,4 @@
-package Restaurant;
+package com.example.Savesystem.Restaurant;
 import java.util.ArrayList; // import the ArrayList class
 
 
@@ -34,16 +34,11 @@ public class comboMeal {
 		return r;
 	}
 
-	/**
-	 * 
-	 * @param r
-	 * @param name
-	 * @param price
-	 * @param price
-	 * @param fs
-	 */
+
 	public comboMeal(String name, float price, ArrayList<Food> fs) {
 		this.name = name;
+		this.price = price;
+		this.fs = fs;
 	}
 
 	/**
@@ -62,8 +57,7 @@ public class comboMeal {
 		this.fs = fs;
 	}
 	/**
-	 * 
-	 * @param img
+	 *
 	 */
 
 	public image getImg() {

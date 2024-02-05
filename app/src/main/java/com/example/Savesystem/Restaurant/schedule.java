@@ -1,4 +1,4 @@
-package Restaurant;
+package com.example.Savesystem.Restaurant;
 
 import java.util.ArrayList;
 import java.util.Stack;
