@@ -1,5 +1,7 @@
 package com.example.fyp;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,15 +9,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.List;
 
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.IngredientViewHolder> {
 
     private List<Ingredient> ingredients;
-
+    private Context context;
     // Constructor
-    public IngredientsAdapter(List<Ingredient> ingredients) {
+    public IngredientsAdapter(List<Ingredient> ingredients,Context context) {
         this.ingredients = ingredients;
+        this.context = context;
     }
 
     @NonNull
@@ -28,7 +36,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     @Override
     public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
         Ingredient ingredient = ingredients.get(position);
-        holder.bind(ingredient);
+        holder.bind(ingredient,context);
     }
 
     @Override
@@ -48,9 +56,13 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
             textViewIngredientName = itemView.findViewById(R.id.textViewIngredientName);
         }
 
-        void bind(Ingredient ingredient) {
-            imageViewIngredient.setImageResource(ingredient.getImageResourceId());
+        void bind(Ingredient ingredient, Context context) {
             textViewIngredientName.setText(ingredient.getName());
+            // Use Glide to load the image
+            Glide.with(context)
+                    .load(ingredient.getImageResourceId())
+                    .apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.salmon)) // Placeholder and Error image
+                    .into(imageViewIngredient);
         }
     }
 }

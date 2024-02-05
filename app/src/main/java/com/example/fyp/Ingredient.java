@@ -25,7 +25,4 @@ public class Ingredient {
         this.name = name;
     }
 
-    public void setImageResourceId(int imageResourceId) {
-        this.imageResourceId = imageResourceId;
-    }
 }

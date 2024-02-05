@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.fyp.foodrecommend;
 
 import org.json.JSONArray;
@@ -54,20 +57,22 @@ public class RecommendFragment extends Fragment {
         // Initialize dialog elements if you need to interact with them
         TextView mealNameTextView = dialog.findViewById(R.id.mealname);
         ImageView foodimageView = dialog.findViewById(R.id.food);
-
+        Button btnAnother = dialog.findViewById(R.id.another);
         // Example button click listener
         Button okButton = dialog.findViewById(R.id.Button2);
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Ensure the activity context is available
                 if (getActivity() != null) {
                     Intent intent = new Intent(getActivity(), foodrecommend.class);
+                    // Put the meal name as an extra in the Intent
+                    intent.putExtra("MEAL_NAME", mealNameTextView.getText().toString());
                     startActivity(intent);
                     dialog.dismiss(); // Close the dialog
                 }
             }
         });
+
 
         // Fetch JSON data and update UI elements
         fetchJsonAndPopulateUI(mealNameTextView,foodimageView, dialog);
@@ -104,6 +109,7 @@ public class RecommendFragment extends Fragment {
 
                         inputStream.close();
                         String jsonResult = builder.toString();
+
                         Log.d("RecommendFragment", "Response: " + jsonResult);
 
                         // Parse JSON and update UI
@@ -112,18 +118,29 @@ public class RecommendFragment extends Fragment {
                             if (jsonArray.length() > 0) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(0);
                                 final String mealName = jsonObject.getString("Name");
-                                final int imageResourceId = getResources().getIdentifier(jsonObject.getString("ImagePath"), "drawable", getContext().getPackageName());
-
+                                final String imagePath = jsonObject.getString("ImagePath");
+                                final String FoodID = jsonObject.getString("FoodID");
                                 // Update UI on the main thread
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
-                                    public void run() {
-                                        mealNameTextView.setText(mealName);
-                                        if (imageResourceId != 0) {
-                                            foodimageView.setImageResource(imageResourceId);
-                                        } else {
-                                            // Handle the case where the image resource does not exist
-                                            foodimageView.setImageResource(R.drawable.salmon); // You can replace 'default_image' with your default image resource
+                                                public void run() {
+                                                    mealNameTextView.setText(mealName);
+                                                    if (imagePath != null) {
+                                                        String resourceName = imagePath.replace(".jpg", ""); // Assuming imagePath has the extension
+                                                        int imageResId = getResources().getIdentifier(resourceName, "drawable", getActivity().getPackageName());
+
+                                                        RequestOptions requestOptions = new RequestOptions()
+                                                                .placeholder(R.drawable.loading) // Placeholder image while loading
+                                                                .transform(new RoundedCorners(10)); // Adjust the radius as needed
+
+                                                        if (imageResId != 0) { // Resource ID found
+                                                            Glide.with(requireContext())
+                                                                    .load(imageResId)
+                                                                    .apply(requestOptions)
+                                                                    .into(foodimageView);
+                                                        } else { // Fallback if the resource ID is not found
+                                                            foodimageView.setImageResource(R.drawable.salmon); // You can replace 'salmon' with your default image resource
+                                            }
                                         }
                                     }
                                 });

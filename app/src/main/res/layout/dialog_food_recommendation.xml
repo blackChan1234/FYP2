@@ -25,7 +25,7 @@
     <ImageView
         android:id="@+id/food"
         android:layout_width="550dp"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_marginTop="50dp"
         android:src="@drawable/food" />
 
@@ -37,7 +37,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/Button1"
+            android:id="@+id/another"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"

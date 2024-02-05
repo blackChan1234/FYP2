@@ -3,6 +3,7 @@ package com.example.fyp;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,19 +40,22 @@ public class NutritionFactsAdapter extends RecyclerView.Adapter<NutritionFactsAd
 
     // ViewHolder class
     static class NutritionFactViewHolder extends RecyclerView.ViewHolder {
-        // UI elements to display nutrition fact
         private TextView textViewNutritionName;
         private TextView textViewNutritionValue;
+        private ImageView imageViewNutrition; // Add this line
 
         NutritionFactViewHolder(View itemView) {
             super(itemView);
             textViewNutritionName = itemView.findViewById(R.id.textViewNutritionName);
             textViewNutritionValue = itemView.findViewById(R.id.textViewNutritionValue);
+            imageViewNutrition = itemView.findViewById(R.id.imageViewNutritionIcon);
         }
 
         void bind(NutritionFact nutritionFact) {
             textViewNutritionName.setText(nutritionFact.getName());
             textViewNutritionValue.setText(nutritionFact.getValue());
+            imageViewNutrition.setImageResource(nutritionFact.getImageResourceId());
         }
     }
+
 }
