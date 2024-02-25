@@ -79,6 +79,7 @@
         app:iconifiedByDefault="false"
         app:queryHint="Search"
         android:elevation="4dp" />
+
     <TextView
         android:id="@+id/home"
         android:layout_width="56dp"
@@ -91,6 +92,7 @@
         android:textAppearance="@style/home"
         android:gravity="top"
         />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
@@ -119,6 +121,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tabLayout"/>
+
     <View
         android:id="@+id/line"
         android:layout_width="416dp"
@@ -127,6 +130,7 @@
         android:elevation="4dp"
         android:layout_marginTop="180dp"
         />
+
     <Button
         android:id="@+id/btnJumpToFoodRecommend"
         android:layout_width="wrap_content"
