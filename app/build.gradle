@@ -21,7 +21,7 @@ android {
 
         python {
 //指定python路径 注意更换为自己的Python路径!!
-            buildPython("D:\\python\\python.exe")
+            buildPython("C:\\Users\\NAM\\AppData\\Local\\Programs\\Python\\Python312\\python.exe")
 //安装第三方库
             pip {
                 install "numpy"
@@ -46,10 +46,14 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.11.0") {
         exclude group: "com.android.support"
     }
-    implementation 'com.github.bumptech.glide:glide:4.16.0' // Replace 4.x with the latest version
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    implementation 'androidx.preference:preference:1.2.1'// Replace 4.x with the latest version
     annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.5.0'
+    implementation "androidx.preference:preference-ktx:1.2.1"
+
+
 
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'

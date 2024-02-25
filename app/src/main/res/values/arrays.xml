@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="auto_play_entries">auto play entries</string-array>
+    <string-array name="entry_values">entry values</string-array>
+    <string-array name="theme_entries">theme entries</string-array>
+</resources>

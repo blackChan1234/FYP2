@@ -29,4 +29,19 @@ Home
     <string name="find_recipe">Find Recipe</string>
     <string name="find_restaurants">Find Restaurants</string>
     <string name="mealname" />
+    <string name="alerts">alerts</string>
+    <string name="settings" />
+    <string name="notifi">Notification</string>
+    <string name="general">General</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="battery_saver">Battery Saver Only</string>
+    <string name="auto_play">auto play</string>
+    <string name="enabled">Enabled</string>
+    <string name="display">Display</string>
+    <string name="wallpaper">wallpaper</string>
+    <string name="change_wallpaper">Change Wallpaper</string>
+    <string name="device_theme">Device Theme</string>
+    <string name="brightness_level">Brightness_Level</string>
+    <string name="value_percentage">value percentage</string>
+    <string name="automatic">Automatic</string>
 </resources>
