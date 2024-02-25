@@ -1,8 +1,9 @@
-package RestaurantCommand;
+package com.example.Savesystem.RestaurantCommand;
 
-import Restaurant.Food;
-import Restaurant.Ingredient;
-import command.command;
+import com.example.Savesystem.command.command;
+
+import com.example.Savesystem.Restaurant.Food;
+import com.example.Savesystem.Restaurant.Ingredient;
 
 public class AddIngredient implements command {
     private Food f;
@@ -13,6 +14,10 @@ public class AddIngredient implements command {
         this.i = i;
 
     }
-    
 
+
+    @Override
+    public void execute() {
+
+    }
 }

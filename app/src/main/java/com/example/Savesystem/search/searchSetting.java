@@ -1,4 +1,6 @@
-package search;
+package com.example.Savesystem.search;
+
+import java.util.ArrayList;
 
 public class searchSetting {
 

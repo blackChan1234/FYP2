@@ -1,4 +1,4 @@
-package command;
+package com.example.Savesystem.command;
 
-public class trainRecommendSystem implements command {
+public class trainRecommendSystem {
 }

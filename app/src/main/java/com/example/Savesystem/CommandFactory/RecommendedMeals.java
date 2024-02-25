@@ -1,4 +1,4 @@
-package CommandFactory;
+package com.example.Savesystem.CommandFactory;
 
-public class RecommendedMeals implements CommandFactory {
+public class RecommendedMeals {
 }

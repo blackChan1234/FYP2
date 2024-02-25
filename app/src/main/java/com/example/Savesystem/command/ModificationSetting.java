@@ -1,4 +1,4 @@
-package command;
+package com.example.Savesystem.command;
 
-public class ModificationSetting implements command {
+public class ModificationSetting {
 }

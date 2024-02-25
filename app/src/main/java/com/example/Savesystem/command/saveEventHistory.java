@@ -1,4 +1,4 @@
-package command;
+package com.example.Savesystem.command;
 
-public class saveEventHistory implements command {
+public class saveEventHistory {
 }

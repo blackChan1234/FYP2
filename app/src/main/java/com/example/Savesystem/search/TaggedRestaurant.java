@@ -1,6 +1,8 @@
-package search;
+package com.example.Savesystem.search;
 
-import Restaurant.*;
+import com.example.Savesystem.Restaurant.*;
+
+import java.util.ArrayList;
 
 public class TaggedRestaurant extends Restaurant {
 

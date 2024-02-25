@@ -1,4 +1,4 @@
-package command;
+package com.example.Savesystem.command;
 
-public class getSetOfComboMeal implements command {
+public class getSetOfComboMeal {
 }

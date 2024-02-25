@@ -1,4 +1,4 @@
-package CommandFactory;
+package com.example.Savesystem.CommandFactory;
 
-public class saveEventHistoryFactory implements CommandFactory {
+public class saveEventHistoryFactory {
 }

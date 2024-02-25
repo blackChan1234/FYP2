@@ -1,4 +1,6 @@
-package search;
+package com.example.Savesystem.search;
+
+import com.example.Savesystem.search.searchSetting;
 
 public class sqlSearchFood extends searchSetting {
 
