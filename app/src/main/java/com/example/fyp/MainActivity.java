@@ -2,6 +2,7 @@ package com.example.fyp;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -9,7 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -27,10 +30,22 @@ public class MainActivity extends AppCompatActivity {
         // Initialize TabLayout and ViewPager
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         ViewPager viewPager = findViewById(R.id.viewPager);
+        SearchView searchView = findViewById(R.id.search_bar);
 
         // Setup the ViewPager with the sections adapter.
         setupViewPager(viewPager);
 
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 在搜索框获得焦点时执行的操作
+                    // 可以在此处进行页面转换或其他操作
+                    Intent intent = new Intent(MainActivity.this, filter.class);
+                    startActivity(intent);
+                }
+            }
+        });
         // Connect the tab layout with the view pager. This will
         //   1. Update the tab layout when the view pager is swiped
         //   2. Update the view pager when a tab is selected
