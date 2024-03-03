@@ -18,45 +18,56 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         }
+        Properties properties = new Properties()
+        File propertiesFile = rootProject.file('local.properties')
+        if (propertiesFile.exists()) {
+            properties.load(propertiesFile.newDataInputStream())
+        }
+
+        def pythonPath = properties.getProperty("pythonPath")
+        if (pythonPath == null) {
+            throw new RuntimeException("Python path not found in local.properties")
+        }
 
         python {
-//指定python路径 注意更换为自己的Python路径!!
-            buildPython("C:\\Users\\NAM\\AppData\\Local\\Programs\\Python\\Python312\\python.exe")
-//安装第三方库
+            buildPython(pythonPath)
             pip {
                 install "numpy"
             }
         }
-        useLibrary 'org.apache.http.legacy'
-    }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        useLibrary 'org.apache.http.legacy'
+
+
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            }
+        }
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+
+        dependencies {
+            implementation("com.github.bumptech.glide:glide:4.11.0") {
+                exclude group: "com.android.support"
+            }
+            implementation 'com.github.bumptech.glide:glide:4.16.0'
+            implementation 'androidx.preference:preference:1.2.1'
+// Replace 4.x with the latest version
+            annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+            implementation 'androidx.appcompat:appcompat:1.6.1'
+            implementation 'com.google.android.material:material:1.5.0'
+            implementation "androidx.preference:preference-ktx:1.2.1"
+
+
+            implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+            testImplementation 'junit:junit:4.13.2'
+            androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+            androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-}
-
-dependencies {
-    implementation ("com.github.bumptech.glide:glide:4.11.0") {
-        exclude group: "com.android.support"
-    }
-    implementation 'com.github.bumptech.glide:glide:4.16.0'
-    implementation 'androidx.preference:preference:1.2.1'// Replace 4.x with the latest version
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation "androidx.preference:preference-ktx:1.2.1"
-
-
-
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }

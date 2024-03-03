@@ -42,19 +42,16 @@ public class NutritionFactsAdapter extends RecyclerView.Adapter<NutritionFactsAd
     static class NutritionFactViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewNutritionName;
         private TextView textViewNutritionValue;
-        private ImageView imageViewNutrition; // Add this line
 
         NutritionFactViewHolder(View itemView) {
             super(itemView);
             textViewNutritionName = itemView.findViewById(R.id.textViewNutritionName);
             textViewNutritionValue = itemView.findViewById(R.id.textViewNutritionValue);
-            imageViewNutrition = itemView.findViewById(R.id.imageViewNutritionIcon);
         }
 
         void bind(NutritionFact nutritionFact) {
             textViewNutritionName.setText(nutritionFact.getName());
             textViewNutritionValue.setText(nutritionFact.getValue());
-            imageViewNutrition.setImageResource(nutritionFact.getImageResourceId());
         }
     }
 
