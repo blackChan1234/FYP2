@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/baseline_arrow_back_ios_new_24"
+            android:background="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/user_information"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/edit"
+            android:textSize="25sp"
+            android:textColor="@color/deep_sky_blue"
+            android:layout_weight="3"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:text="@string/user_name"
+                    android:layout_column="1" />
+
+                <EditText
+                    android:id="@+id/user_name_edit"
+                    android:layout_column="2"
+                    android:gravity="end" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/height"
+                    android:text="@string/height"
+                    android:layout_column="1" />
+
+                <NumberPicker
+                    android:id="@+id/height_edit"
+                    android:layout_column="2" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/body_weight"
+                    android:text="@string/body_weight"
+                    android:layout_column="1" />
+
+                <NumberPicker
+                    android:id="@+id/body_weight_edit"
+                    android:layout_column="2" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/preferences"
+                    android:text="@string/preferences"
+                    android:layout_column="1" />
+
+            </TableRow>
+
+            <TableRow>
+                <CheckBox
+                    android:id="@+id/preferences_ChineseFood"
+                    android:text="@string/chinese_food"
+                    android:layout_column="1" />
+
+                <CheckBox
+                    android:id="@+id/preferences_WesternFood"
+                    android:text="@string/western_food" />
+
+                <CheckBox
+                    android:id="@+id/preferences_JapaneseFood"
+                    android:text="@string/japanese_food" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <CheckBox
+                    android:id="@+id/preferences_KoreanFood"
+                    android:text="@string/korean_food"
+                    android:layout_column="1" />
+
+                <CheckBox
+                    android:id="@+id/preferences_IndianCuisine"
+                    android:text="@string/indian_cuisine" />
+
+                <CheckBox
+                    android:id="@+id/preferences_ThaiCuisine"
+                    android:text="@string/thai_cuisine" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/certain_foods_question"
+                    android:text="@string/certain_foods_question"
+                    android:layout_column="1" />
+
+                <CheckBox
+                    android:id="@+id/certain_foods_yes"
+                    android:text="@string/yes" />
+
+                <CheckBox
+                    android:id="@+id/certain_foods_no"
+                    android:text="@string/no" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/certain_foods"
+                    android:text="@string/certain_foods"
+                    android:layout_column="1" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <CheckBox
+                    android:id="@+id/peanuts"
+                    android:text="@string/peanuts"
+                    android:layout_column="1" />
+
+                <CheckBox
+                    android:id="@+id/milk"
+                    android:text="@string/milk" />
+
+                <CheckBox
+                    android:id="@+id/eggs"
+                    android:text="@string/eggs" />
+
+                <CheckBox
+                    android:id="@+id/soy"
+                    android:text="@string/soy" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <CheckBox
+                    android:id="@+id/wheat"
+                    android:text="@string/wheat"
+                    android:layout_column="1" />
+
+                <CheckBox
+                    android:id="@+id/fish"
+                    android:text="@string/fish" />
+
+                <CheckBox
+                    android:id="@+id/nuts"
+                    android:text="@string/nuts" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </ScrollView>
+
+</LinearLayout>

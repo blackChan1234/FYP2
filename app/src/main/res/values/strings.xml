@@ -1,19 +1,10 @@
 <resources>
     <string name="app_name">FYP</string>
-    <string name="now">
-Now
-</string>
-
-    <string name="current_loc">
-Current location
-</string>
-
-    <string name="home">
-Home
-</string>
+    <string name="now">Now</string>
+    <string name="current_loc">Current location</string>
+    <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="filter">Filter</string>
-
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -47,4 +38,28 @@ Home
     <string name="night_mode">Night</string>
     <string name="night_mode_summary">night mode summary</string>
     <string name="hello_world">hello_world</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="user_information">User Information\n</string>
+    <string name="user_name">User Name</string>
+    <string name="preferences">Preferences</string>
+    <string name="height">Height</string>
+    <string name="body_weight">Body weight</string>
+    <string name="chinese_food">Chinese food</string>
+    <string name="western_food">Western food</string>
+    <string name="japanese_food">Japanese food</string>
+    <string name="korean_food">Korean food</string>
+    <string name="indian_cuisine">Indian cuisine</string>
+    <string name="thai_cuisine">Thai cuisine</string>
+    <string name="certain_foods_question">Are you allergic to certain foods?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="certain_foods">Certain foods</string>
+    <string name="peanuts">Peanuts</string>
+    <string name="milk">Milk</string>
+    <string name="eggs">Eggs</string>
+    <string name="soy">Soy</string>
+    <string name="wheat">Wheat</string>
+    <string name="fish">Fish</string>
+    <string name="nuts">Nuts</string>
 </resources>
