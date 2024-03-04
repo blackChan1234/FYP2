@@ -44,4 +44,6 @@ Home
     <string name="brightness_level">Brightness_Level</string>
     <string name="value_percentage">value percentage</string>
     <string name="automatic">Automatic</string>
+    <string name="night_mode">Night</string>
+    <string name="night_mode_summary">night mode summary</string>
 </resources>
