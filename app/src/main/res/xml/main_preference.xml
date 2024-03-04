@@ -13,7 +13,6 @@
 
     <PreferenceCategory
         android:title="@string/general">
-
         <SwitchPreferenceCompat
             android:key="switch_preference"
             android:title="@string/dark_theme"
@@ -52,7 +51,7 @@
             android:entryValues="@array/entry_values"/>
     </PreferenceCategory>
 
-    <Preference
+    <SwitchPreferenceCompat
         android:key="night_mode"
         android:title="@string/night_mode"
         android:summary="@string/night_mode_summary"/>

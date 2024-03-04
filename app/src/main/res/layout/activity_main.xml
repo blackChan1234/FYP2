@@ -137,5 +137,10 @@
         android:layout_height="wrap_content"
         android:text="Go to Food Recommendation"
         android:visibility="gone" /> <!-- Initially hidden -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColor"
+        android:background="@color/background"/>
 
 </RelativeLayout>

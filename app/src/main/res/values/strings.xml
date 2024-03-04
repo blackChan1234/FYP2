@@ -46,4 +46,5 @@ Home
     <string name="automatic">Automatic</string>
     <string name="night_mode">Night</string>
     <string name="night_mode_summary">night mode summary</string>
+    <string name="hello_world">hello_world</string>
 </resources>

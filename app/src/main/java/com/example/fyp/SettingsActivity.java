@@ -18,11 +18,8 @@ public class SettingsActivity extends AppCompatActivity {
                 .replace(android.R.id.content, new SettingsFragment())
                 .commit();
 
-        // 假设这里有一个按钮或某种方式触发夜间模式的切换
-        // toggleNightMode(); // 你可以根据需要决定何时调用此方法
     }
 
-    // 添加一个 public 方法以便于从 UI 控件（如按钮）触发
     public void toggleNightMode() {
         int nightMode = AppCompatDelegate.getDefaultNightMode();
         if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {

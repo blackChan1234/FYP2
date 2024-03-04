@@ -5,4 +5,6 @@
     <color name="button_color_red">#FF0000</color>
     <color name="button_color_orange">#ED8609</color>
     <color name="Blaze_Orange">#FF6F00</color>
+    <color name="background">#FFFFFF</color>
+    <color name="textColor">#000000</color>
 </resources>
