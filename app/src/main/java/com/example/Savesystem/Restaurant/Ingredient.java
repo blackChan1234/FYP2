@@ -1,39 +1,37 @@
 package com.example.Savesystem.Restaurant;
 
-public class Ingredient {
+import java.util.List;
 
+public class Ingredient {
 	private String name;
-	private image img;
-	public image getImg() {
-		return img;
+	private String image; // Assuming the image is represented by its URL as a String
+   private Amount amount;
+
+	// Constructor
+	public Ingredient(String name, String image,Amount amount) {
+		this.name = name;
+		this.image = image;
+		this.amount = amount;
+
 	}
+	public void setAmount(Amount amount) {
+		this.amount = amount;
+	}
+	// Getters and setters
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * 
-	 * @param name
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * 
-	 * @param name
-	 */
-	public Ingredient(String name) {
-		this.name = name;
-		this.img = new image();
-	}
-	public Ingredient(String name, image img) {
-		this.name = name;
-		this.img = img;
-	}
-	public Ingredient(String name, String imgPath) {
-		this.name = name;
-		this.img = new image(imgPath);
+	public String getImage() {
+		return image;
 	}
 
+	public void setImage(String image) {
+		this.image = image;
+	}
 }
+

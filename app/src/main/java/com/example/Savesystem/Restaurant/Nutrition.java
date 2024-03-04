@@ -1,50 +1,18 @@
 package com.example.Savesystem.Restaurant;
 
 public class Nutrition {
-
 	private String name;
-	private float quantity;
-	private image img;
-	public String getName() {
-		return name;
-	}
+	private double amount;
+	private String unit;
 
-	public float getQuantity() {
-		return quantity;
-	}
-
-	public image getImg() {
-		return img;
-	}
-	/**
-	 * 
-	 * @param name
-	 */
-	public void setName(String name) {
+	public Nutrition(String name, double amount, String unit) {
 		this.name = name;
+		this.amount = amount;
+		this.unit = unit;
 	}
 
-	/**
-	 * 
-	 * @param q
-	 */
-	public void setQuantity(float q) {
-		this.quantity = q;
-	}
-
-	/**
-	 * 
-	 * @param name
-	 * @param quantity
-	 */
-	public Nutrition(String name, float quantity) {
-		this.name = name;
-		this.quantity = quantity;
-		this.img = new image();
-	}
-	public Nutrition(String name, float quantity, String imagePath) {
-		this.name = name;
-		this.quantity = quantity;
-		this.img = new image(imagePath);
-	}
+	// Getters
+	public String getName() { return name; }
+	public double getAmount() { return amount; }
+	public String getUnit() { return unit; }
 }
