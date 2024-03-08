@@ -73,3 +73,7 @@ android {
         }
     }
 }
+
+dependencies {
+    implementation files('D:\\Desktop\\Year2 Homework\\FYP\\FYP\\app\\libs\\mongo-java-driver-3.4.0-SNAPSHOT.jar')
+}

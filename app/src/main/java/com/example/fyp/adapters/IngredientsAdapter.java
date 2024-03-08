@@ -1,4 +1,4 @@
-package com.example.fyp;
+package com.example.fyp.adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,8 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.fyp.R;
+import com.example.Savesystem.Restaurant.Ingredient; // Make sure to import your Ingredient class
 
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
     private List<Ingredient> ingredients;
     private Context context;
-    // Constructor
-    public IngredientsAdapter(List<Ingredient> ingredients,Context context) {
+
+    public IngredientsAdapter(List<Ingredient> ingredients, Context context) {
         this.ingredients = ingredients;
         this.context = context;
     }
@@ -36,7 +37,12 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     @Override
     public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
         Ingredient ingredient = ingredients.get(position);
-        holder.bind(ingredient,context);
+        Log.d("IngredientsAdapter", "Binding ingredient at position " + position + ": " + ingredient.getName());
+        holder.textViewIngredientName.setText(ingredient.getName());
+        Glide.with(context)
+                .load(ingredient.getImage()) // Assuming getImage() returns a valid URL
+                .apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.error)) // Assuming you have error and loading drawables
+                .into(holder.imageViewIngredient);
     }
 
     @Override
@@ -44,25 +50,14 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         return ingredients.size();
     }
 
-    // ViewHolder class
     static class IngredientViewHolder extends RecyclerView.ViewHolder {
-        // UI elements to display the ingredient
-        private ImageView imageViewIngredient;
-        private TextView textViewIngredientName;
+        ImageView imageViewIngredient;
+        TextView textViewIngredientName;
 
         IngredientViewHolder(View itemView) {
             super(itemView);
             imageViewIngredient = itemView.findViewById(R.id.imageViewIngredient);
             textViewIngredientName = itemView.findViewById(R.id.textViewIngredientName);
-        }
-
-        void bind(Ingredient ingredient, Context context) {
-            textViewIngredientName.setText(ingredient.getName());
-            // Use Glide to load the image
-            Glide.with(context)
-                    .load(ingredient.getImageResourceId())
-                    .apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.salmon)) // Placeholder and Error image
-                    .into(imageViewIngredient);
         }
     }
 }

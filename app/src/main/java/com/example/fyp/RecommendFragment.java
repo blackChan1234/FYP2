@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -73,10 +75,12 @@ public class RecommendFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (getActivity() != null) {
+                    // Assuming 'currentMeal' is the meal you want to pass
+                    Food currentMeal = meals.get(currentMealIndex % meals.size());
                     Intent intent = new Intent(getActivity(), foodrecommend.class);
-                    // Put the meal name as an extra in the Intent
-                    intent.putExtra("MEAL_NAME", mealNameTextView.getText().toString());
+                    intent.putExtra("CURRENT_MEAL_ID", currentMeal.getId());
                     startActivity(intent);
+
                     dialog.dismiss(); // Close the dialog
                 }
             }
@@ -133,55 +137,39 @@ public class RecommendFragment extends Fragment {
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                final String responseData = response.body().string();
-                try {
-                    JSONArray jsonArray = new JSONArray(responseData);
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        boolean isVegetarian = jsonObject.getBoolean("vegetarian");
-                        boolean isGlutenFree = jsonObject.getBoolean("glutenFree");
-                        // Filter based on user preferences
-                       // if (matchesUserPreferences(isVegetarian, isGlutenFree)) {
-                            Food meal = new Food(
-                                    jsonObject.getString("id"),
-                                    jsonObject.getString("title"),
-                                    jsonObject.getString("image"),
-                                    jsonObject.getString("sourceUrl"),
-                                    isVegetarian,
-                                    jsonObject.getBoolean("vegan"),
-                                    isGlutenFree,
-                                    jsonObject.getBoolean("dairyFree"),
-                                    jsonObject.getInt("preparationMinutes"),
-                                    jsonObject.getInt("cookingMinutes"),
-                                    jsonObject.getInt("aggregateLikes"),
-                                    jsonObject.getDouble("healthScore"),
-                                    jsonObject.getString("creditsText"),
-                                    jsonObject.getDouble("pricePerServing"),
-                                    jsonObject.getInt("readyInMinutes"),
-                                    jsonObject.getInt("servings"),
-                                    jsonObject.getString("summary"),
-                                    convertJsonArrayToList(jsonObject.getJSONArray("cuisines")),
-                                    convertJsonArrayToList(jsonObject.getJSONArray("dishTypes")),
-                                    convertJsonArrayToList(jsonObject.getJSONArray("diets")),
-                                    // Assume methods to parse and create lists of ingredients and nutritions
-                                    parseIngredients(jsonObject),
-                                    parseNutritions(jsonObject)
-                            );
-                            displayMeal(mealNameTextView, foodimageView); // Show next meal
-                            dialog.show();
+                if (response.isSuccessful()) {
+                    final String responseData = response.body().string();
+                    // Parse the JSON data and update the UI on the main thread
+                    try {
+                        JSONArray jsonArray = new JSONArray(responseData);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                            Food meal = parseFoodFromJsonObject(jsonObject);
                             meals.add(meal);
                         }
-                   // }
-                    // Proceed to display the first meal and set up button listeners
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                        // Ensure UI updates are run on the main thread
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    // Update the UI with the first meal as an example
+                                    displayMeal(mealNameTextView, foodimageView);
+                                    dialog.show();
+                                }
+                            });
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
+        });
+    }
             private ArrayList<Ingredient> parseIngredients(JSONObject jsonObject) {
                 ArrayList<Ingredient> ingredients = new ArrayList<>();
                 try {
-                    JSONObject ingredientsJSONObject = jsonObject.getJSONObject("ingredients");
-                    JSONArray ingredientsJsonArray = ingredientsJSONObject.getJSONArray("ingredients");
+                    JSONArray ingredientsJsonArray = jsonObject.getJSONArray("ingredients");
                     for (int i = 0; i < ingredientsJsonArray.length(); i++) {
                         JSONObject ingredientObject = ingredientsJsonArray.getJSONObject(i);
                         JSONObject amountObject = ingredientObject.getJSONObject("amount");
@@ -194,8 +182,7 @@ public class RecommendFragment extends Fragment {
 
                         Ingredient ingredient = new Ingredient(
                                 ingredientObject.getString("name"),
-                                ingredientObject.getString("image"),
-                                new Amount(metricValue, metricUnit, usValue, usUnit)
+                                ingredientObject.getString("image")
                         );
                         ingredients.add(ingredient);
                     }
@@ -204,20 +191,45 @@ public class RecommendFragment extends Fragment {
                 }
                 return ingredients;
             }
+    private Food parseFoodFromJsonObject(JSONObject jsonObject) throws JSONException {
+        String _id = jsonObject.getString("_id");
+        String id = jsonObject.getString("id");
+        String title = jsonObject.getString("title");
+        String image = jsonObject.getString("image");
+        String sourceUrl = jsonObject.getString("sourceUrl");
+        boolean vegetarian = jsonObject.getBoolean("vegetarian");
+        boolean vegan = jsonObject.getBoolean("vegan");
+        boolean glutenFree = jsonObject.getBoolean("glutenFree");
+        boolean dairyFree = jsonObject.getBoolean("dairyFree");
+        int preparationMinutes = jsonObject.getInt("preparationMinutes");
+        int cookingMinutes = jsonObject.getInt("cookingMinutes");
+        int aggregateLikes = jsonObject.getInt("aggregateLikes");
+        double healthScore = jsonObject.getDouble("healthScore");
+        String creditsText = jsonObject.getString("creditsText");
+        double pricePerServing = jsonObject.getDouble("pricePerServing");
+        int readyInMinutes = jsonObject.getInt("readyInMinutes");
+        int servings = jsonObject.getInt("servings");
+        String summary = jsonObject.getString("summary");
+        List<String> cuisines = convertJsonArrayToList(jsonObject.getJSONArray("cuisines"));
+        List<String> dishTypes = convertJsonArrayToList(jsonObject.getJSONArray("dishTypes"));
+        List<String> diets = convertJsonArrayToList(jsonObject.getJSONArray("diets"));
+        ArrayList<Ingredient> ingredients = parseIngredients(jsonObject.getJSONObject("ingredients"));
+        ArrayList<Nutrition> nutritions = parseNutritions(jsonObject.getJSONObject("nutrition"));
 
-            private ArrayList<Nutrition> parseNutritions(JSONObject jsonObject) {
+        return new Food(_id,id, title, image, sourceUrl, vegetarian, vegan, glutenFree, dairyFree,
+                preparationMinutes, cookingMinutes, aggregateLikes, healthScore, creditsText,
+                pricePerServing, readyInMinutes, servings, summary, cuisines, dishTypes, diets, ingredients, nutritions);
+    }
+
+
+    private ArrayList<Nutrition> parseNutritions(JSONObject jsonObject) {
                 ArrayList<Nutrition> nutritions = new ArrayList<>();
-                // Check if "nutritions" key exists
-                if (!jsonObject.has("nutrition")) {
-                    Log.e("parseNutritions", "No 'nutritions' key found in JSON");
-                    // Handle the missing key case, e.g., by returning an empty list
-                    return nutritions;
-                }
                 try {
-                    JSONObject nutritionJSONObject = jsonObject.getJSONObject("nutrition");
-                    JSONArray nutritionJsonArray = nutritionJSONObject.getJSONArray("nutrients");
-                    for (int i = 0; i < nutritionJsonArray.length(); i++) {
-                        JSONObject nutritionObject = nutritionJsonArray.getJSONObject(i);
+
+                    if (jsonObject.has("nutritions")) {
+                        JSONArray nutritionJsonArray = jsonObject.getJSONArray("nutritions");
+                        for (int i = 0; i < nutritionJsonArray.length(); i++) {
+                            JSONObject nutritionObject = nutritionJsonArray.getJSONObject(i);
                         Nutrition nutrition = new Nutrition(
                                 nutritionObject.getString("name"),
                                 nutritionObject.getDouble("amount"),
@@ -225,7 +237,7 @@ public class RecommendFragment extends Fragment {
                         );
                         nutritions.add(nutrition);
                     }
-                } catch (JSONException e) {
+                }} catch (JSONException e) {
                     Log.e("parseNutritions", "Error parsing nutritions", e);
                 }
                 return nutritions;
@@ -245,7 +257,4 @@ public class RecommendFragment extends Fragment {
 
 
 
-});
-
-    }
-    }
+}
