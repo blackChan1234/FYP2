@@ -67,6 +67,10 @@
     <string name="weight">weight</string>
     <string name="height">height</string>
     <string name="name">Name</string>
+    <string name="Login">Login</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="Register">Register</string>
     <string-array name="certainFoodsQuestionOptions">
         <item>Yes</item>
         <item>No</item>
