@@ -62,4 +62,10 @@
     <string name="wheat">Wheat</string>
     <string name="fish">Fish</string>
     <string name="nuts">Nuts</string>
+    <string name="cm">cm</string>
+    <string name="kg">kg</string>
+    <string-array name="certainFoodsQuestionOptions">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
 </resources>

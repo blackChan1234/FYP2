@@ -45,156 +45,276 @@
         android:layout_height="match_parent"
         android:scrollbars="none">
 
-        <TableLayout
+        <LinearLayout
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:orientation="vertical" >
 
-            <TableRow>
+            <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
 
                 <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:id="@+id/user_name"
                     android:text="@string/user_name"
-                    android:layout_column="1" />
+                    android:gravity="center"
+                    android:layout_weight="1" />
 
                 <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:id="@+id/user_name_edit"
-                    android:layout_column="2"
-                    android:gravity="end" />
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:ems="4" />
 
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
 
                 <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:id="@+id/height"
                     android:text="@string/height"
-                    android:layout_column="1" />
+                    android:gravity="center"
+                    android:layout_weight="1"/>
 
-                <NumberPicker
+                <EditText
                     android:id="@+id/height_edit"
-                    android:layout_column="2" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:ems="1"
+                    android:inputType="numberDecimal" />
 
-            </TableRow>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/cm"
+                    android:text="@string/cm"
+                    android:gravity="center"
+                    android:layout_weight="0.1"/>
 
-            <TableRow>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
 
                 <TextView
                     android:id="@+id/body_weight"
                     android:text="@string/body_weight"
-                    android:layout_column="1" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1" />
 
-                <NumberPicker
+                <EditText
                     android:id="@+id/body_weight_edit"
-                    android:layout_column="2" />
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:inputType="numberDecimal"
+                    android:ems="3" />
 
-            </TableRow>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/kg"
+                    android:text="@string/kg"
+                    android:gravity="center"
+                    android:layout_weight="0.1"/>
 
-            <TableRow>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
 
                 <TextView
                     android:id="@+id/preferences"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:text="@string/preferences"
-                    android:layout_column="1" />
+                    android:layout_margin="5dp" />
 
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
                 <CheckBox
                     android:id="@+id/preferences_ChineseFood"
-                    android:text="@string/chinese_food"
-                    android:layout_column="1" />
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/chinese_food" />
 
                 <CheckBox
                     android:id="@+id/preferences_WesternFood"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:text="@string/western_food" />
 
                 <CheckBox
                     android:id="@+id/preferences_JapaneseFood"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:text="@string/japanese_food" />
 
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
 
                 <CheckBox
                     android:id="@+id/preferences_KoreanFood"
-                    android:text="@string/korean_food"
-                    android:layout_column="1" />
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/korean_food" />
 
                 <CheckBox
                     android:id="@+id/preferences_IndianCuisine"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:text="@string/indian_cuisine" />
 
                 <CheckBox
                     android:id="@+id/preferences_ThaiCuisine"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:text="@string/thai_cuisine" />
 
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
 
                 <TextView
                     android:id="@+id/certain_foods_question"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:text="@string/certain_foods_question"
-                    android:layout_column="1" />
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp" />
 
-                <CheckBox
-                    android:id="@+id/certain_foods_yes"
-                    android:text="@string/yes" />
+                <Spinner
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:entries="@array/certainFoodsQuestionOptions"
+                    android:layout_weight="1" />
 
-                <CheckBox
-                    android:id="@+id/certain_foods_no"
-                    android:text="@string/no" />
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
 
                 <TextView
                     android:id="@+id/certain_foods"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:text="@string/certain_foods"
-                    android:layout_column="1" />
+                    android:layout_marginLeft="5dp" />
 
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="end|center"
+                android:layout_marginRight="10dp">
 
                 <CheckBox
                     android:id="@+id/peanuts"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:text="@string/peanuts"
-                    android:layout_column="1" />
+                    android:layout_weight="1" />
 
                 <CheckBox
                     android:id="@+id/milk"
-                    android:text="@string/milk" />
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/milk"
+                    android:layout_weight="1" />
 
                 <CheckBox
                     android:id="@+id/eggs"
-                    android:text="@string/eggs" />
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/eggs"
+                    android:layout_weight="1" />
 
                 <CheckBox
                     android:id="@+id/soy"
-                    android:text="@string/soy" />
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/soy"
+                    android:layout_weight="1" />
 
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="end|center"
+                android:layout_marginRight="10dp">
 
                 <CheckBox
                     android:id="@+id/wheat"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:text="@string/wheat"
-                    android:layout_column="1" />
+                    android:layout_weight="1" />
 
                 <CheckBox
                     android:id="@+id/fish"
-                    android:text="@string/fish" />
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/fish"
+                    android:layout_weight="1" />
 
                 <CheckBox
                     android:id="@+id/nuts"
-                    android:text="@string/nuts" />
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/nuts"
+                    android:layout_weight="1" />
 
-            </TableRow>
+            </LinearLayout>
 
-        </TableLayout>
+        </LinearLayout>
 
     </ScrollView>
 
