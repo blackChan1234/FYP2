@@ -17,7 +17,7 @@
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:hint="@string/Email"
         android:drawableStart="@drawable/baseline_alternate_email_24"
         android:layout_marginTop="50dp"
@@ -27,7 +27,7 @@
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:hint="@string/Password"
         android:drawableStart="@drawable/password"
         android:layout_marginTop="5dp"
