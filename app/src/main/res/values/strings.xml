@@ -43,7 +43,7 @@
     <string name="user_information">User Information\n</string>
     <string name="user_name">User Name</string>
     <string name="preferences">Preferences</string>
-    <string name="height">Height</string>
+    <string name="Height">Height</string>
     <string name="body_weight">Body weight</string>
     <string name="chinese_food">Chinese food</string>
     <string name="western_food">Western food</string>
@@ -64,6 +64,9 @@
     <string name="nuts">Nuts</string>
     <string name="cm">cm</string>
     <string name="kg">kg</string>
+    <string name="weight">weight</string>
+    <string name="height">height</string>
+    <string name="name">Name</string>
     <string-array name="certainFoodsQuestionOptions">
         <item>Yes</item>
         <item>No</item>

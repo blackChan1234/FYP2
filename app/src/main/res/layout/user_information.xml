@@ -14,7 +14,8 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/baseline_arrow_back_ios_new_24"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:contentDescription="@string/return"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -63,12 +64,13 @@
                     android:layout_weight="1" />
 
                 <EditText
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_width="wrap_content"
                     android:id="@+id/user_name_edit"
                     android:gravity="center"
                     android:layout_weight="1"
-                    android:ems="4" />
+                    android:ems="4"
+                    android:hint="@string/name" />
 
             </LinearLayout>
 
@@ -80,18 +82,19 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:id="@+id/height"
-                    android:text="@string/height"
+                    android:text="@string/Height"
                     android:gravity="center"
                     android:layout_weight="1"/>
 
                 <EditText
                     android:id="@+id/height_edit"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:ems="1"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    android:hint="@string/height" />
 
                 <TextView
                     android:layout_height="wrap_content"
@@ -119,10 +122,11 @@
                     android:id="@+id/body_weight_edit"
                     android:gravity="center"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
                     android:inputType="numberDecimal"
-                    android:ems="3" />
+                    android:ems="3"
+                    android:hint="@string/weight"/>
 
                 <TextView
                     android:layout_height="wrap_content"
@@ -222,7 +226,7 @@
                     android:layout_marginLeft="5dp" />
 
                 <Spinner
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_width="wrap_content"
                     android:entries="@array/certainFoodsQuestionOptions"
                     android:layout_weight="1" />
