@@ -29,28 +29,27 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="@string/Password"
-        android:drawableStart="@drawable/password"
+        android:drawableStart="password.png"
         android:layout_marginTop="5dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp" />
 
     <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:layout_gravity="center"
         android:text="@string/Login"
         android:textColor="@color/black"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="10dp" />
+        android:layout_marginTop="50dp" />
 
     <Button
         android:id="@+id/register"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="@string/Register"
         android:textColor="@color/black"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="10dp" />
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center" />
 
 </LinearLayout>
