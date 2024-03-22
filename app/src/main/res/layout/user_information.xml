@@ -158,53 +158,65 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <CheckBox
-                    android:id="@+id/preferences_ChineseFood"
+                <TableRow
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@string/chinese_food" />
+                    android:layout_width="match_parent">
 
-                <CheckBox
-                    android:id="@+id/preferences_WesternFood"
+                    <CheckBox
+                        android:id="@+id/preferences_ChineseFood"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/chinese_food"
+                        android:layout_weight="1" />
+
+                    <CheckBox
+                        android:id="@+id/preferences_WesternFood"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/western_food"
+                        android:layout_weight="1" />
+
+                    <CheckBox
+                        android:id="@+id/preferences_JapaneseFood"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/japanese_food"
+                        android:layout_weight="1" />
+
+                </TableRow>
+
+                <TableRow
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@string/western_food" />
+                    android:layout_width="match_parent">
 
-                <CheckBox
-                    android:id="@+id/preferences_JapaneseFood"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@string/japanese_food" />
+                    <CheckBox
+                        android:id="@+id/preferences_KoreanFood"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/korean_food"
+                        android:layout_weight="1" />
 
-            </LinearLayout>
+                    <CheckBox
+                        android:id="@+id/preferences_IndianCuisine"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/indian_cuisine"
+                        android:layout_weight="1" />
 
-            <LinearLayout
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent">
+                    <CheckBox
+                        android:id="@+id/preferences_ThaiCuisine"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/thai_cuisine"
+                        android:layout_weight="1" />
 
-                <CheckBox
-                    android:id="@+id/preferences_KoreanFood"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@string/korean_food" />
+                </TableRow>
 
-                <CheckBox
-                    android:id="@+id/preferences_IndianCuisine"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@string/indian_cuisine" />
-
-                <CheckBox
-                    android:id="@+id/preferences_ThaiCuisine"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@string/thai_cuisine" />
-
-            </LinearLayout>
+            </TableLayout>
 
             <View
                 android:layout_width="match_parent"
