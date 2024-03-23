@@ -37,13 +37,16 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     @Override
     public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
         Ingredient ingredient = ingredients.get(position);
+        Log.d("GlideImageUrl", "Loading image for: " + ingredient.getName() + " | URL: " + ingredient.getImageUrl());
+
         Log.d("IngredientsAdapter", "Binding ingredient at position " + position + ": " + ingredient.getName());
         holder.textViewIngredientName.setText(ingredient.getName());
         Glide.with(context)
-                .load(ingredient.getImage()) // Assuming getImage() returns a valid URL
-                .apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.error)) // Assuming you have error and loading drawables
+                .load(ingredient.getImageUrl()) // Now correctly loading from a URL
+                .apply(new RequestOptions().placeholder(R.drawable.loading)) // Handling loading and error placeholders
                 .into(holder.imageViewIngredient);
     }
+
 
     @Override
     public int getItemCount() {

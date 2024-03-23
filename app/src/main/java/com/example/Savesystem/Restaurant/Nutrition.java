@@ -3,6 +3,8 @@ package com.example.Savesystem.Restaurant;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 public class Nutrition implements Parcelable {
 	private String name;
 	private double amount;
