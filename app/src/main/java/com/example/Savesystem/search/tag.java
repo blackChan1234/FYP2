@@ -3,7 +3,9 @@ package com.example.Savesystem.search;
 public class tag {
 
 	private String name;
-
+	public tag(String name){
+		this.name=name;
+	}
 	public String getName() {
 		return this.name;
 	}
