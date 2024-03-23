@@ -4,12 +4,12 @@ import com.example.Savesystem.Restaurant.*;
 
 import java.util.ArrayList;
 
-public class TaggedFood {
+public class FoodGetTagAdapter {
 
     private Food food;
     private ArrayList<tag> tags;
 
-	public TaggedFood(Food f) {
+	public FoodGetTagAdapter(Food f) {
         this.food= f;
         if( f.isVegan())
             tags.add(new tag("vegan"));
