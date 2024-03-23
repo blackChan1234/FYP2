@@ -40,9 +40,11 @@ public class Ingredient implements Parcelable {
 		}
 	};
 
+    public Ingredient(String name, String image, Amount amount) {
+    }
 
 
-	@Override
+    @Override
 	public int describeContents() {
 		return 0;
 	}

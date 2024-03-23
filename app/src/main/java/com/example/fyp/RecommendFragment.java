@@ -78,7 +78,7 @@ public class RecommendFragment extends Fragment {
                     // Assuming 'currentMeal' is the meal you want to pass
                     Food currentMeal = meals.get(currentMealIndex % meals.size());
                     Intent intent = new Intent(getActivity(), foodrecommend.class);
-                    intent.putExtra("CURRENT_MEAL_ID", currentMeal.getId());
+                    intent.putExtra("CURRENT_MEAL", currentMeal);
                     startActivity(intent);
 
                     dialog.dismiss(); // Close the dialog
@@ -182,7 +182,8 @@ public class RecommendFragment extends Fragment {
 
                         Ingredient ingredient = new Ingredient(
                                 ingredientObject.getString("name"),
-                                ingredientObject.getString("image")
+                                ingredientObject.getString("image"),
+                                new Amount(metricValue, metricUnit, usValue, usUnit)
                         );
                         ingredients.add(ingredient);
                     }
@@ -192,8 +193,8 @@ public class RecommendFragment extends Fragment {
                 return ingredients;
             }
     private Food parseFoodFromJsonObject(JSONObject jsonObject) throws JSONException {
-        String _id = jsonObject.getString("_id");
         String id = jsonObject.getString("id");
+        String _id = jsonObject.getString("_id");
         String title = jsonObject.getString("title");
         String image = jsonObject.getString("image");
         String sourceUrl = jsonObject.getString("sourceUrl");
@@ -216,7 +217,7 @@ public class RecommendFragment extends Fragment {
         ArrayList<Ingredient> ingredients = parseIngredients(jsonObject.getJSONObject("ingredients"));
         ArrayList<Nutrition> nutritions = parseNutritions(jsonObject.getJSONObject("nutrition"));
 
-        return new Food(_id,id, title, image, sourceUrl, vegetarian, vegan, glutenFree, dairyFree,
+        return new Food(id,_id, title, image, sourceUrl, vegetarian, vegan, glutenFree, dairyFree,
                 preparationMinutes, cookingMinutes, aggregateLikes, healthScore, creditsText,
                 pricePerServing, readyInMinutes, servings, summary, cuisines, dishTypes, diets, ingredients, nutritions);
     }
