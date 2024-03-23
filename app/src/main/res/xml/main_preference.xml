@@ -40,7 +40,7 @@
     <PreferenceCategory
         android:key="expandable"
         android:title="@string/display"
-        app:initialExpandedChildrenCount="1">
+        app:initialExpandedChildrenCount="1" />
 
         <SeekBarPreference
             android:key="brightness_preference"
@@ -48,20 +48,6 @@
             android:summary="@string/value_percentage"
             android:max="255"
             android:defaultValue="125" />
-
-        <Preference
-            android:key="intent_preference"
-            android:title="@string/wallpaper"
-            android:summary="@string/change_wallpaper"/>
-
-        <DropDownPreference
-            android:key="drop_down_preference"
-            android:title="@string/device_theme"
-            android:summary="@string/automatic"
-            android:entries="@array/theme_entries"
-            android:entryValues="@array/entry_values"/>
-    </PreferenceCategory>
-
 
 </PreferenceScreen>
 

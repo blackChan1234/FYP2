@@ -64,4 +64,17 @@
     <string name="nuts">堅果</string>
     <string name="language_settings">語言設置</string>
     <string name="language">語言</string>
+    <string name="cm">厘米</string>
+    <string name="kg">公斤</string>
+    <string name="weight">重量</string>
+    <string name="name">姓名</string>
+    <string name="Login">登录</string>
+    <string name="Email">电子邮件</string>
+    <string name="Password">密码</string>
+    <string name="Register">注册</string>
+    <string name="Seach">搜索</string> <!-- 注意这里原文拼写应为 Search -->
+    <string name="Return">返回</string>
+    <string name="filter_by">过滤条件</string>
+    <string name="Area">区域</string>
+    <string name="Hide">隐藏</string>
 </resources>
