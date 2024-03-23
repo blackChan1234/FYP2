@@ -40,11 +40,10 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.main_preference, rootKey);
 
-            // 找到夜间模式偏好设置项并设置监听器
             Preference nightModePref = findPreference("night_mode");
             if (nightModePref != null) {
                 nightModePref.setOnPreferenceClickListener(preference -> {
-                    // 切换夜间模式
+                    // Switch to night mode
                     int nightMode = AppCompatDelegate.getDefaultNightMode();
                     if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -55,7 +54,7 @@ public class SettingsActivity extends AppCompatActivity {
                 });
             }
 
-            // 找到语言偏好设置项并设置监听器
+            // Find the language preference item and set up the listener
             Preference languagePref = findPreference("language_preference");
             if (languagePref != null) {
                 languagePref.setOnPreferenceChangeListener((preference, newValue) -> {
