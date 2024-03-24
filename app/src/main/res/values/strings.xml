@@ -77,6 +77,27 @@
     <string name="Area">Area</string>
     <string name="Hide">Hide</string>
     <string name="language">English</string>
+    <string name="central_and_western">Central and Western</string>
+    <string name="hong_kong">HONG KONG</string>
+    <string name="wan_chai">Wan Chai</string>
+    <string name="eastern">Eastern</string>
+    <string name="southern">Southern</string>
+    <string name="kowloon">KOWLOON</string>
+    <string name="yau_tsim_mong">Yau Tsim Mong</string>
+    <string name="sham_shui_po">Sham Shui Po</string>
+    <string name="kowloon_city">Kowloon City</string>
+    <string name="wong_tai_sin">Wong Tai Sin</string>
+    <string name="kwun_tong">Kwun Tong</string>
+    <string name="tsuen_wan">Tsuen Wan</string>
+    <string name="tuen_mun">Tuen Mun</string>
+    <string name="yuen_long">Yuen Long</string>
+    <string name="north">North</string>
+    <string name="tai_po">Tai Po</string>
+    <string name="sha_tin">Sha Tin</string>
+    <string name="sai_kung">Sai Kung</string>
+    <string name="islands">Islands</string>
+    <string name="preference">Preference</string>
+    <string name="cuisine">Cuisine</string>
     <string-array name="certainFoodsQuestionOptions">
         <item>Yes</item>
         <item>No</item>
