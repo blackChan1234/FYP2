@@ -29,7 +29,7 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/search"
+            android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
@@ -119,11 +119,11 @@
                     android:id="@+id/cuisine_hide"
                     android:layout_width="24dp"
                     android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
                     android:background="@color/white"
                     android:contentDescription="@string/Hide"
                     android:src="@drawable/baseline_arrow_drop_up_24"
-                    tools:ignore="TouchTargetSizeCheck"
-                    android:layout_alignParentEnd="true"/>
+                    tools:ignore="TouchTargetSizeCheck" />
 
             </RelativeLayout>
 
@@ -337,5 +337,9 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
