@@ -98,6 +98,15 @@
     <string name="islands">Islands</string>
     <string name="preference">Preference</string>
     <string name="cuisine">Cuisine</string>
+    <string name="japanese">Japanese</string>
+    <string name="sushi_sashimi">Sushi/Sashimi</string>
+    <string name="buffet">Buffet</string>
+    <string name="dim_sum_restaurant">Dim Sum Restaurant</string>
+    <string name="dessert">Dessert</string>
+    <string name="french">French</string>
+    <string name="american">American</string>
+    <string name="hot_pot">Hot Pot</string>
+    <string name="sichuan">Sichuan</string>
     <string-array name="certainFoodsQuestionOptions">
         <item>Yes</item>
         <item>No</item>

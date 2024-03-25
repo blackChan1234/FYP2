@@ -130,8 +130,98 @@
             <LinearLayout
                 android:id="@+id/cuisine"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/japanese"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/japanese"
+                            android:layout_column="1"
+                            android:layout_weight="1"/>
+
+                        <CheckBox
+                            android:id="@+id/sushi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sushi_sashimi"
+                            android:layout_column="2"
+                            android:layout_weight="1"/>
+
+                        <CheckBox
+                            android:id="@+id/buffet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/buffet"
+                            android:layout_column="3"
+                            android:layout_weight="1"/>
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/dim_sum_restaurant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dim_sum_restaurant"
+                            android:layout_column="1"
+                            android:layout_weight="1"/>
+
+                        <CheckBox
+                            android:id="@+id/dessert"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dessert"
+                            android:layout_column="2"
+                            android:layout_weight="1"/>
+
+                        <CheckBox
+                            android:id="@+id/french"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/french"
+                            android:layout_column="3"
+                            android:layout_weight="1"/>
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/american"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/american"
+                            android:layout_column="1"
+                            android:layout_weight="1"/>
+
+                        <CheckBox
+                            android:id="@+id/hot_pot"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/hot_pot"
+                            android:layout_column="2"
+                            android:layout_weight="1"/>
+
+                        <CheckBox
+                            android:id="@+id/sichuan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sichuan"
+                            android:layout_column="3"
+                            android:layout_weight="1"/>
+
+                    </TableRow>
+
+                </TableLayout>
+
             </LinearLayout>
 
             <RelativeLayout
