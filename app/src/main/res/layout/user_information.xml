@@ -265,70 +265,74 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_height="wrap_content"
+            <TableLayout
                 android:layout_width="match_parent"
-                android:gravity="end|center"
-                android:layout_marginRight="10dp">
+                android:layout_height="wrap_content">
+
+            <TableRow>
 
                 <CheckBox
                     android:id="@+id/peanuts"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/peanuts"
-                    android:layout_weight="1" />
+                    android:layout_column="1"
+                    android:layout_weight="0.25"/>
 
                 <CheckBox
                     android:id="@+id/milk"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/milk"
-                    android:layout_weight="1" />
+                    android:layout_column="2"
+                    android:layout_weight="0.25"/>
 
                 <CheckBox
                     android:id="@+id/eggs"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/eggs"
-                    android:layout_weight="1" />
+                    android:layout_column="3"
+                    android:layout_weight="0.25"/>
 
                 <CheckBox
                     android:id="@+id/soy"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/soy"
-                    android:layout_weight="1" />
+                    android:layout_column="4"
+                    android:layout_weight="0.25"/>
 
-            </LinearLayout>
+            </TableRow>
 
-            <LinearLayout
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:gravity="end|center"
-                android:layout_marginRight="10dp">
+            <TableRow>
 
                 <CheckBox
                     android:id="@+id/wheat"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/wheat"
-                    android:layout_weight="1" />
+                    android:layout_column="1"
+                    android:layout_weight="0.25"/>
 
                 <CheckBox
                     android:id="@+id/fish"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/fish"
-                    android:layout_weight="1" />
+                    android:layout_column="2"
+                    android:layout_weight="0.25"/>
 
                 <CheckBox
                     android:id="@+id/nuts"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/nuts"
-                    android:layout_weight="1" />
+                    android:layout_column="3"
+                    android:layout_weight="0.86"/>
 
-            </LinearLayout>
+            </TableRow>
+            </TableLayout>
 
         </LinearLayout>
 
