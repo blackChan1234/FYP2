@@ -111,4 +111,6 @@
         <item>Yes</item>
         <item>No</item>
     </string-array>
+    <string name="title_activity_bottomnavigation">BottomnavigationActivity</string>
+    <string name="RandomMeal">Random Meal</string>
 </resources>

@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -16,8 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FYP"
         android:usesCleartextTraffic="true"
-
         tools:targetApi="31">
+        <activity
+            android:name=".BottomnavigationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_bottomnavigation" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -29,8 +32,7 @@
         </activity>
         <activity
             android:name=".foodrecommend"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".filter"
             android:exported="true">
@@ -41,7 +43,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SettingsActivity" />
-
     </application>
 
 </manifest>
