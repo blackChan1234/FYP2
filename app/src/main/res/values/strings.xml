@@ -19,9 +19,9 @@
     <string name="close_button_description">CloseButton</string>
     <string name="find_recipe">Find Recipe</string>
     <string name="find_restaurants">Find Restaurants</string>
-    <string name="mealname" />
+    <string name="mealname" translatable="false" />
     <string name="alerts">alerts</string>
-    <string name="settings" />
+    <string name="settings" translatable="false" />
     <string name="notifi">Notification</string>
     <string name="general">General</string>
     <string name="dark_theme">Dark Theme</string>
@@ -113,4 +113,7 @@
     </string-array>
     <string name="title_activity_bottomnavigation">BottomnavigationActivity</string>
     <string name="RandomMeal">Random Meal</string>
+    <string name="profile_index">Profile</string>
+    <string name="foodie_lover">foodie lover</string>
+    <string name="profile_email">123@gmail.com</string>
 </resources>

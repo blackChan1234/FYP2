@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">FYP</string>
     <string name="now">現在</string>
     <string name="current_loc">當前位置</string>
@@ -77,4 +77,40 @@
     <string name="Area">区域</string>
     <string name="Hide">隐藏</string>
     <string name="RandomMeal">Random Meal</string>
+    <string name="central_and_western">中西区</string>
+    <string name="hong_kong">香港</string>
+    <string name="wan_chai">湾仔</string>
+    <string name="eastern">东区</string>
+    <string name="southern">南区</string>
+    <string name="kowloon">九龙</string>
+    <string name="yau_tsim_mong">油尖旺</string>
+    <string name="sham_shui_po">深水埗</string>
+    <string name="kowloon_city">九龙城</string>
+    <string name="wong_tai_sin">黄大仙</string>
+    <string name="kwun_tong">观塘</string>
+    <string name="tsuen_wan">荃湾</string>
+    <string name="tuen_mun">屯门</string>
+    <string name="yuen_long">元朗</string>
+    <string name="north">北区</string>
+    <string name="tai_po">大埔</string>
+    <string name="sha_tin">沙田</string>
+    <string name="sai_kung">西贡</string>
+    <string name="islands">离岛</string>
+    <string name="preference">偏好</string>
+    <string name="cuisine">美食</string>
+    <string name="japanese">日本菜</string>
+    <string name="sushi_sashimi">寿司/刺身</string>
+    <string name="buffet">自助餐</string>
+    <string name="dim_sum_restaurant">点心餐厅</string>
+    <string name="dessert">甜品</string>
+    <string name="french">法国菜</string>
+    <string name="american">美国菜</string>
+    <string name="hot_pot">火锅</string>
+    <string name="sichuan">四川菜</string>
+    <string name="title_activity_bottomnavigation">底部导航活动</string>
+    <string name="RandomMeal" tools:ignore="DuplicateDefinition">随机餐点</string>
+    <string name="profile_index">个人资料</string>
+    <string name="foodie_lover">美食爱好者</string>
+    <string name="profile_email">123@gmail.com</string>
+
 </resources>
