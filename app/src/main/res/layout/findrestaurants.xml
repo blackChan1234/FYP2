@@ -29,7 +29,7 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/search"
+            android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
@@ -39,26 +39,18 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/filter_by"
-        android:textSize="23sp"/>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:gravity="center_vertical|left"
-            android:text="@string/Area"
-            android:textSize="20sp"
-            tools:ignore="RtlHardcoded" />
+            android:text="@string/filter_by"
+            android:textSize="23sp"
+            android:gravity="center_vertical|left" />
 
         <ImageButton
-            android:id="@+id/area_hide"
+            android:id="@+id/filter_hide"
             android:layout_width="24dp"
             android:layout_height="48dp"
             android:background="@color/white"
@@ -69,11 +61,375 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/preference"
+                    android:textSize="20sp"
+                    tools:ignore="RtlHardcoded" />
+
+                <ImageButton
+                    android:id="@+id/preference_hide"
+                    android:layout_width="24dp"
+                    android:layout_height="48dp"
+                    android:background="@color/white"
+                    android:contentDescription="@string/Hide"
+                    android:src="@drawable/baseline_arrow_drop_up_24"
+                    tools:ignore="TouchTargetSizeCheck"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/preference"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/cuisine"
+                    android:textSize="20sp"
+                    tools:ignore="RtlHardcoded" />
+
+                <ImageButton
+                    android:id="@+id/cuisine_hide"
+                    android:layout_width="24dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@color/white"
+                    android:contentDescription="@string/Hide"
+                    android:src="@drawable/baseline_arrow_drop_up_24"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/cuisine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/japanese"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/japanese"
+                            android:layout_column="1"
+                            android:layout_weight="1"/>
+
+                        <CheckBox
+                            android:id="@+id/sushi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sushi_sashimi"
+                            android:layout_column="2"
+                            android:layout_weight="1"/>
+
+                        <CheckBox
+                            android:id="@+id/buffet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/buffet"
+                            android:layout_column="3"
+                            android:layout_weight="1"/>
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/dim_sum_restaurant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dim_sum_restaurant"
+                            android:layout_column="1"
+                            android:layout_weight="1"/>
+
+                        <CheckBox
+                            android:id="@+id/dessert"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dessert"
+                            android:layout_column="2"
+                            android:layout_weight="1"/>
+
+                        <CheckBox
+                            android:id="@+id/french"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/french"
+                            android:layout_column="3"
+                            android:layout_weight="1"/>
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/american"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/american"
+                            android:layout_column="1"
+                            android:layout_weight="1"/>
+
+                        <CheckBox
+                            android:id="@+id/hot_pot"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/hot_pot"
+                            android:layout_column="2"
+                            android:layout_weight="1"/>
+
+                        <CheckBox
+                            android:id="@+id/sichuan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sichuan"
+                            android:layout_column="3"
+                            android:layout_weight="1"/>
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/Area"
+                    android:textSize="20sp"
+                    tools:ignore="RtlHardcoded" />
+
+                <ImageButton
+                    android:id="@+id/area_hide"
+                    android:layout_width="24dp"
+                    android:layout_height="48dp"
+                    android:background="@color/white"
+                    android:contentDescription="@string/Hide"
+                    android:src="@drawable/baseline_arrow_drop_up_24"
+                    tools:ignore="TouchTargetSizeCheck"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hong_kong"/>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/central_and_western"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/central_and_western"
+                            android:layout_column="1"/>
+
+                        <CheckBox
+                            android:id="@+id/wan_chai"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/wan_chai"
+                            android:layout_column="2"/>
+
+                        <CheckBox
+                            android:id="@+id/eastern"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/eastern"
+                            android:layout_column="3"/>
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/southern"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/southern"
+                            android:layout_column="1"/>
+
+                    </TableRow>
+
+                    <TextView
+                        android:id="@+id/kowloon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/kowloon"/>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/yau_tsim_mong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yau_tsim_mong"
+                            android:layout_column="1"/>
+
+                        <CheckBox
+                            android:id="@+id/sham_shui_po"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sham_shui_po"
+                            android:layout_column="2"/>
+
+                        <CheckBox
+                            android:id="@+id/kowloon_city"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/kowloon_city"
+                            android:layout_column="3"/>
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/wong_tai_sin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/wong_tai_sin"
+                            android:layout_column="1"/>
+
+                        <CheckBox
+                            android:id="@+id/kwun_tong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/kwun_tong"
+                            android:layout_column="2"/>
+
+                    </TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NEW TERRITORIES"/>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/tsuen_wan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tsuen_wan"
+                            android:layout_column="1"/>
+
+                        <CheckBox
+                            android:id="@+id/tuen_mun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tuen_mun"
+                            android:layout_column="2"/>
+
+                        <CheckBox
+                            android:id="@+id/yuen_long"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yuen_long"
+                            android:layout_column="3"/>
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/north"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/north"
+                            android:layout_column="1"/>
+
+                        <CheckBox
+                            android:id="@+id/tai_po"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tai_po"
+                            android:layout_column="2"/>
+
+                        <CheckBox
+                            android:id="@+id/sha_tin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sha_tin"
+                            android:layout_column="3"/>
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/sai_kung"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sai_kung"
+                            android:layout_column="1"/>
+
+                        <CheckBox
+                            android:id="@+id/islands"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/islands"
+                            android:layout_column="2"/>
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-
-    </RelativeLayout>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

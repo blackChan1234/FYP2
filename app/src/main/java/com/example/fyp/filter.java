@@ -10,18 +10,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
 public class filter extends AppCompatActivity {
-    private Context mContext;
+    private LinearLayout dropdownLayout;
+    private ImageButton filter_hide,area_hide,preference_hide,cuisine_hide;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.findrestaurants);
-        mContext = filter.this;
+
+        searchView = findViewById(R.id.search_view);
+        searchView.setSubmitButtonEnabled(true);
 
         ImageButton btn_arrow_back = findViewById(R.id.arrow_back);
         btn_arrow_back.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +37,52 @@ public class filter extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        filter_hide = findViewById(R.id.filter_hide);
+        filter_hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dropdownLayout = findViewById(R.id.filter);
+                hideFilter(filter_hide, dropdownLayout);
+            }
+        });
+
+        area_hide = findViewById(R.id.area_hide);
+        area_hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dropdownLayout = findViewById(R.id.area);
+                hideFilter(area_hide, dropdownLayout);
+            }
+        });
+
+        preference_hide = findViewById(R.id.preference_hide);
+        preference_hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dropdownLayout = findViewById(R.id.preference);
+                hideFilter(preference_hide, dropdownLayout);
+            }
+        });
+
+        cuisine_hide = findViewById(R.id.cuisine_hide);
+        cuisine_hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dropdownLayout = findViewById(R.id.cuisine);
+                hideFilter(cuisine_hide, dropdownLayout);
+            }
+        });
+    }
+
+    public void hideFilter(ImageButton btn, LinearLayout dropdownLayout) {
+        if (dropdownLayout.getVisibility() == View.VISIBLE) {
+            dropdownLayout.setVisibility(View.GONE);
+            btn.setImageResource(R.drawable.baseline_arrow_drop_down_24);
+        } else {
+            dropdownLayout.setVisibility(View.VISIBLE);
+            btn.setImageResource(R.drawable.baseline_arrow_drop_up_24);
+        }
     }
 }
 

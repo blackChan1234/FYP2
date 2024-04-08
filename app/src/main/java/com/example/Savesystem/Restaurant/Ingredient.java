@@ -12,19 +12,18 @@ import java.util.List;
 
 public class Ingredient implements Parcelable {
 	private String name;
-	private String image;
-
+	private String imageUrl;
+	private Amount amount;
 
 	// Constructor
-	public Ingredient(String name, String image) {
+	public Ingredient(String name, String imageName,Amount amount) {
 		this.name = name;
-		this.image = image;
-
+		this.imageUrl = "https://spoonacular.com/cdn/ingredients_100x100/" + imageName;
 	}
 
 	protected Ingredient(Parcel in) {
 		name = in.readString();
-		image = in.readString();
+		imageUrl = in.readString();
 
 	}
 
@@ -40,8 +39,6 @@ public class Ingredient implements Parcelable {
 		}
 	};
 
-    public Ingredient(String name, String image, Amount amount) {
-    }
 
 
     @Override
@@ -52,7 +49,7 @@ public class Ingredient implements Parcelable {
 	@Override
 	public void writeToParcel(Parcel parcel, int flags) {
 		parcel.writeString(name);
-		parcel.writeString(image);
+		parcel.writeString(imageUrl);
 	}
 
 	// Getters and setters
@@ -64,30 +61,11 @@ public class Ingredient implements Parcelable {
 		this.name = name;
 	}
 
-	public String getImage() {
-		return image;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-
-
-
-
-	// Parse ingredients from JSON array
-	public static List<Ingredient> parseIngredients(JSONArray jsonArray) throws JSONException {
-		List<Ingredient> ingredientsList = new ArrayList<>();
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject ingredientObject = jsonArray.getJSONObject(i);
-			String name = ingredientObject.getString("name");
-			String image = ingredientObject.getString("image");
-			String unit = ingredientObject.getString("unit");
-
-			Ingredient ingredient = new Ingredient(name, image);
-			ingredientsList.add(ingredient);
-		}
-		return ingredientsList;
+	public void setImageName(String imageName) {
+		this.imageUrl = "https://spoonaulous.com/cdn/ingredients_100x100/" + imageName;
 	}
 }

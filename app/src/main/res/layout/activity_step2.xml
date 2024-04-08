@@ -1,0 +1,27 @@
+<!-- activity_step2.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="66"/>
+
+    <!-- You'll need to write code to manage the state of these buttons -->
+    <!-- Replace with your own ids and strings -->
+    <Button android:id="@+id/buttonVegetarian" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Vegetarian" android:background="@drawable/lavender_border"/>
+    <!-- Add more buttons for Vegan, Gluten-Free, etc. -->
+
+    <Button
+        android:id="@+id/buttonNextStep2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:onClick="goToStep3"/>
+</LinearLayout>

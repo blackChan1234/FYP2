@@ -54,6 +54,8 @@ import java.util.List;
 		this.cuisines = cuisines;
 		this.dishTypes = dishTypes;
 		this.diets = diets;
+		this.nutritions = nutritions;
+		this.ingredients = ingredients;
 	}
 
 		protected Food(Parcel in) {
@@ -166,9 +168,6 @@ import java.util.List;
 	public void setNutritions(ArrayList<Nutrition> nutritions) {
 		this.nutritions = nutritions;
 	}
-
-	public void addNutrition(Nutrition nutrition) {
-		this.nutritions.add(nutrition);
-	}
+	public String toString(){return "n:"+getNutritions();}
 }
 
