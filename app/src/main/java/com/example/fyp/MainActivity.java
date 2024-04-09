@@ -6,8 +6,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -61,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new RecommendFragment(), "Recommend");
         adapter.addFragment(new BookingFragment(), "Booking");
         adapter.addFragment(new MenuFragment(), "Menu");
+        adapter.addFragment(new NearbyRestaurantsFragment(),"Nearby Restaurants");
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);
