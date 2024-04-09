@@ -1,27 +1,106 @@
 <!-- activity_step2.xml -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/_2_3_steps"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:progress="66"/>
+        android:progressDrawable="@drawable/custom_progress_bar"
+        android:progress="66"
+        android:layout_marginBottom="24dp"/>
 
-    <!-- You'll need to write code to manage the state of these buttons -->
-    <!-- Replace with your own ids and strings -->
-    <Button android:id="@+id/buttonVegetarian" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Vegetarian" android:background="@drawable/lavender_border"/>
-    <!-- Add more buttons for Vegan, Gluten-Free, etc. -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/set_dietary_restrictions"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Container for horizontal buttons -->
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexWrap="wrap"
+        app:justifyContent="center"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/buttonVegetarian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:text="@string/Vegetarian"
+            android:textColor="@color/button_text_color"
+            android:elevation="4dp"
+            android:onClick="onDietaryRestrictionButtonClick"
+            android:layout_marginEnd="8dp"/>
+
+        <!-- Other buttons -->
+        <!-- Make sure to change the ID for each button -->
+        <Button
+            android:id="@+id/buttonVegan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:text="@string/Vegan"
+            android:textColor="@color/button_text_color"
+            android:elevation="4dp"
+            android:onClick="onDietaryRestrictionButtonClick"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/buttonGlutenFree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:text="@string/GlutenFree"
+            android:textColor="@color/button_text_color"
+            android:elevation="4dp"
+            android:onClick="onDietaryRestrictionButtonClick"
+            android:layout_marginEnd="8dp"/>
+        <Button
+            android:id="@+id/buttondairyFree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:text="@string/dairyFree"
+            android:textColor="@color/button_text_color"
+            android:elevation="4dp"
+            android:onClick="onDietaryRestrictionButtonClick"
+            android:layout_marginEnd="8dp"/>
+        <Button
+            android:id="@+id/buttonOrganic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:text="@string/Organic"
+            android:textColor="@color/button_text_color"
+            android:elevation="4dp"
+            android:onClick="onDietaryRestrictionButtonClick"
+            android:layout_marginEnd="8dp"
+            tools:ignore="DuplicateIds" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
 
     <Button
         android:id="@+id/buttonNextStep2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="@string/next"
         android:onClick="goToStep3"/>
 </LinearLayout>

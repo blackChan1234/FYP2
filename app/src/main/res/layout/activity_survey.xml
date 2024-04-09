@@ -1,0 +1,20 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <include
+        android:id="@+id/layoutStep1"
+        layout="@layout/activity_step1"/>
+    <include
+        android:id="@+id/layoutStep2"
+        layout="@layout/activity_step2"
+        android:visibility="gone"/>
+    <include
+        android:id="@+id/layoutStep3"
+        layout="@layout/activity_step3"
+        android:visibility="gone"/>
+
+</LinearLayout>
