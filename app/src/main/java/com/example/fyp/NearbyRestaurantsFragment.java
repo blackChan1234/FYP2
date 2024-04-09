@@ -26,6 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.EmptyStackException;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import androidx.annotation.NonNull;
@@ -53,9 +54,9 @@ public class NearbyRestaurantsFragment extends Fragment {
 //        this.setContentView(R.layout.test1);
 //        tv=  findViewById(R.id.textView1);
 //        initiateFetchRestaurants();
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        fetchLastLocation();
+//        fetchLastLocation();
         return inflater.inflate(R.layout.test1, container, false);
 
 
@@ -166,33 +167,33 @@ private ArrayList<NearbyRestaurant> jsonStringToNearbyRestaurant(ArrayList<Nearb
 
 
 
-    private void fetchLastLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // 检查权限，如果没有权限，请求权限
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            return;
-        }
-        Task<Location> task = fusedLocationClient.getLastLocation();
-        task.addOnSuccessListener(this, new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                // 在这里使用location对象
-                if (location != null) {
-                    double latitude = location.getLatitude();
-                    double longitude = location.getLongitude();
+//    private void fetchLastLocation() {
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // 检查权限，如果没有权限，请求权限
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+//            return;
+//        }
+//        Task<Location> task = fusedLocationClient.getLastLocation();
+//        task.addOnSuccessListener((Executor) this, new OnSuccessListener<Location>() {
+//            @Override
+//            public void onSuccess(Location location) {
+//                // 在这里使用location对象
+//                if (location != null) {
+//                    double latitude = location.getLatitude();
+//                    double longitude = location.getLongitude();
+//
+//                    // 使用获取到的最后一个位置信息
+//                }
+//            }
+//        });
+//    }
 
-                    // 使用获取到的最后一个位置信息
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 1 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            // 权限被授予，继续获取位置
-            fetchLastLocation();
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (requestCode == 1 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//            // 权限被授予，继续获取位置
+//            fetchLastLocation();
+//        }
+//    }
 }
