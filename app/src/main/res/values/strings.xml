@@ -117,4 +117,24 @@
     <string name="age_hint">Enter your age</string>
     <string name="weight_hint">Enter your weight (kg or lbs)</string>
     <string name="height_hint">Enter your height (cm or inches)</string>
+    <string name="Vegetarian">Vegetarian</string>
+    <string name="_2_3_steps">2 / 3 steps</string>
+    <string name="set_dietary_restrictions">Set Dietary Restrictions:</string>
+    <string name="next">Next</string>
+    <string name="Vegan">Vegan</string>
+    <string name="GlutenFree">glutenFree</string>
+    <string name="dairyFree">DairyFree</string>
+    <string name="Organic">Organic</string>
+    <string name="_3_3_steps">3 / 3 steps</string>
+    <string name="Italian">Italian</string>
+    <string name="Japanese">Japanese</string>
+    <string name="Mediterranean">Mediterranean</string>
+    <string name="Chinese">Chinese</string>
+    <string name="Mexican">Mexican</string>
+    <string name="Indian">Indian</string>
+    <string name="Thai">Thai</string>
+    <string name="American">American</string>
+    <string name="Greek">Greek</string>
+    <string name="French">French</string>
+    <string name="cusineType">What type of cuisine do you prefer?</string>
 </resources>
