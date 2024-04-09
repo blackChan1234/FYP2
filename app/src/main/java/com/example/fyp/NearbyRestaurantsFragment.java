@@ -34,31 +34,48 @@ import java.util.EmptyStackException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.location.Location;
 
 
+import com.example.fyp.adapters.NearbyRestaurantAdapter;
 import com.google.android.gms.location.FusedLocationProviderClient;
 
 public class NearbyRestaurantsFragment extends Fragment implements LocationListener {
     Location location;
     Context thiscontext;
     LocationManager locMgr;
-    TextView tv2;
-    TextView tv;
+    TextView tv, tv2 , tv3,tv4,tv5;
+    private RecyclerView nearFactsRecyclerView;
+    NearbyRestaurantAdapter nearRestaurantAdapter;
     @SuppressLint("MissingPermission")
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        //test tv
         tv=  view.findViewById(R.id.textView1);
         tv2=  view.findViewById(R.id.textView2);
+        tv3=  view.findViewById(R.id.textView3);
+        tv4=  view.findViewById(R.id.textView4);
+        tv5=  view.findViewById(R.id.textView5);
+
+        tv.setVisibility(View.GONE);
+        tv2.setVisibility(View.GONE);
+        tv3.setVisibility(View.GONE);
+        tv4.setVisibility(View.GONE);
+        tv5.setVisibility(View.GONE);
+
+        nearFactsRecyclerView = view.findViewById(R.id.nearFactsRecyclerView);
         thiscontext = view.getContext();
+
         locMgr=(LocationManager) thiscontext.getSystemService(Context.LOCATION_SERVICE);
 
         location=locMgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         initiateFetchRestaurants();
 
+
     }
+
 
     @SuppressLint("MissingPermission")
     public void onResume(){
@@ -102,16 +119,18 @@ private ArrayList<NearbyRestaurant> jsonStringToNearbyRestaurant(ArrayList<Nearb
         Object item = jsonArray.get(i);
         if (item instanceof JSONObject) {
             JSONObject obj = (JSONObject) item;
+            if(obj.isNull("name") || obj.length()<3)
+                continue;
             String name = obj.optString("name", "No name provided");
             String address = obj.optString("address", "No address provided");
             JSONArray restaurantCoordinates = obj.getJSONObject("location").getJSONArray("coordinates");
-//            double longitude = restaurantCoordinates.getDouble(0);
-//            double latitude = restaurantCoordinates.getDouble(1);
             double distance = obj.getDouble("distance");
             r1= new NearbyRestaurant();
             r1.setLoc(address);
             r1.setName(name);
             r1.setDistance(distance);
+            restaurantList.add(r1);
+
         }
     }
             return restaurantList;
@@ -124,8 +143,8 @@ private ArrayList<NearbyRestaurant> jsonStringToNearbyRestaurant(ArrayList<Nearb
         executor.execute(() -> {
             // Replace these with your actual values or method calls to get them
 
-//            String coordinates = "[114.1062036, 22.3425344]";
-            String coordinates = "["+location.getLongitude()+", "+location.getLatitude()+"]";
+            String coordinates = "[114.1062036, 22.3425344]";
+//            String coordinates = "["+location.getLongitude()+", "+location.getLatitude()+"]";
 
             int maxDistance = 5000;
 
@@ -141,9 +160,10 @@ private ArrayList<NearbyRestaurant> jsonStringToNearbyRestaurant(ArrayList<Nearb
                     ArrayList<NearbyRestaurant> restaurantList = new ArrayList<>();
                     jsonStringToNearbyRestaurant(restaurantList,jsonString);
                     if(!restaurantList.isEmpty()&&! (restaurantList.size() == 0)) {
-                        NearbyRestaurant r1 = restaurantList.get(0);
+                        nearRestaurantAdapter = new NearbyRestaurantAdapter(restaurantList, this);
+                        nearFactsRecyclerView.setAdapter(nearRestaurantAdapter);
                     }
-//                    tv2.setText(r1.getName()+":"+r1.getLoc());
+
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
