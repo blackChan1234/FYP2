@@ -16,6 +16,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
+import org.apache.hc.core5.http.io.entity.StringEntity;
+
+import java.util.EmptyStackException;
+
 public class filter extends AppCompatActivity {
     private LinearLayout dropdownLayout;
     private ImageButton filter_hide,area_hide,preference_hide,cuisine_hide;
@@ -84,5 +93,7 @@ public class filter extends AppCompatActivity {
             btn.setImageResource(R.drawable.baseline_arrow_drop_up_24);
         }
     }
+
+
 }
 

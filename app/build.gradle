@@ -6,7 +6,15 @@ plugins {
 android {
     namespace 'com.example.fyp'
     compileSdk 34
+    packagingOptions {
+        // Pick one of the strategies: 'exclude' or 'pickFirst'
 
+        // Use 'exclude' to completely ignore the specified files.
+        exclude 'META-INF/DEPENDENCIES'
+
+        // Or use 'pickFirst' to include the first occurrence of the file and ignore subsequent ones.
+        // pickFirst 'META-INF/DEPENDENCIES'
+    }
     defaultConfig {
         applicationId "com.example.fyp"
         minSdk 28
@@ -48,6 +56,8 @@ android {
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
+            sourceCompatibility = '17'
+            targetCompatibility = '17'
         }
 
 
@@ -66,6 +76,11 @@ android {
             testImplementation 'junit:junit:4.13.2'
             androidTestImplementation 'androidx.test.ext:junit:1.1.5'
             androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+            // https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5
+            implementation 'org.apache.httpcomponents.client5:httpclient5:5.3.1'
+
+            implementation 'com.google.android.gms:play-services-location:17.1.0'
+
         }
     }
     buildFeatures {
