@@ -43,7 +43,7 @@
     <string name="user_information">User Information\n</string>
     <string name="user_name">User Name</string>
     <string name="preferences">Preferences</string>
-    <string name="Height">Height</string>
+    <string name="Height" translatable="false">Height</string>
     <string name="body_weight">Body weight</string>
     <string name="chinese_food">Chinese food</string>
     <string name="western_food">Western food</string>
