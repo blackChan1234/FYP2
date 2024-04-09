@@ -143,8 +143,8 @@ private ArrayList<NearbyRestaurant> jsonStringToNearbyRestaurant(ArrayList<Nearb
         executor.execute(() -> {
             // Replace these with your actual values or method calls to get them
 
-            String coordinates = "[114.1062036, 22.3425344]";
-//            String coordinates = "["+location.getLongitude()+", "+location.getLatitude()+"]";
+//            String coordinates = "[114.1062036, 22.3425344]";
+            String coordinates = "["+location.getLongitude()+", "+location.getLatitude()+"]";
 
             int maxDistance = 5000;
 

@@ -2,11 +2,13 @@
 buildscript {
     repositories {
         maven { url "https://chaquo.com/maven" }
+//        maven { url 'https://jitpack.io' }
         google() //添加行
     }
     dependencies {
         classpath "com.chaquo.python:gradle: 14.0.2" //添加行
         classpath 'com.android.tools.build:gradle:8.0.2'
+        classpath 'com.google.gms:google-services:3.1.2'
     }
 }
 plugins {

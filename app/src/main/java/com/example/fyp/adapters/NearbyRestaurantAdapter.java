@@ -48,11 +48,11 @@ public class NearbyRestaurantAdapter extends RecyclerView.Adapter<NearbyRestaura
         holder.textViewName.setText(restaurant.getName());
         holder.textViewAddress.setText(restaurant.getLoc());
 
-        Glide.with(fragment)
-                //app/src/main/res/drawable/defult_restaurant.png
-                .load("drawable/default_restaurant.png") // Now correctly loading from a URL
-                .apply(new RequestOptions().placeholder(R.drawable.loading)) // Handling loading and error placeholders
-                .into(holder.imageView);
+//        Glide.with(fragment)
+//                //app/src/main/res/drawable/defult_restaurant.png
+//                .load("/app/src/main/res/drawable/defult_restaurant.png") // Now correctly loading from a URL
+//                .apply(new RequestOptions().placeholder(R.drawable.loading)) // Handling loading and error placeholders
+//                .into(holder.imageView);
     }
 
 
