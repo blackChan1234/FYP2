@@ -20,6 +20,18 @@
         android:theme="@style/Theme.FYP"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+<!--        <activity android:name=".test2Activity" android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                &lt;!&ndash; If this is the main activity that launches the app &ndash;&gt;-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                &lt;!&ndash; If this activity is represented in the launcher &ndash;&gt;-->
+
+<!--                &lt;!&ndash; Other intents the activity should handle can be added here &ndash;&gt;-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+
         <activity
             android:name=".BottomnavigationActivity"
             android:exported="false"
