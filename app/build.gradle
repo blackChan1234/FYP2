@@ -88,7 +88,10 @@ android {
             // Android 13 and below.
             implementation "androidx.credentials:credentials-play-services-auth:1.3.0-alpha02"
             implementation 'com.github.TutorialsAndroid:GButton:v1.0.19'
-            apply plugin: 'com.google.gms.google-services'
+
+
+//            implementation "androidx.activity:activity:1.2.0"
+//            implementation "androidx.fragment:fragment:1.3.0"
 
 
 
@@ -107,6 +110,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0'
     implementation 'androidx.navigation:navigation-fragment:2.5.2'
     implementation 'androidx.navigation:navigation-ui:2.5.2'
+    implementation 'com.google.firebase:firebase-analytics:20.0.2'
     implementation 'com.google.android.gms:play-services-auth:21.0.0'
+    apply plugin: 'com.google.gms.google-services'
 }
 
