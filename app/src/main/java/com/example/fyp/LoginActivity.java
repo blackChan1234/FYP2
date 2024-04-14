@@ -4,22 +4,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.developer.gbuttons.GoogleSignInButton;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameEditText;
     private EditText passwordEditText;
     private Button loginButton;
-    private GoogleSignInButton gbtn;
-    private GoogleSignInOptions gOptions;
-    private GoogleSignInClient  gClient;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,31 +31,54 @@ public class LoginActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.email);
         passwordEditText = findViewById(R.id.password);
         loginButton = findViewById(R.id.login);
-        gbtn = findViewById(R.id.gbtn);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 performLogin();
             }
         });
-        gOptions= new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        gClient= GoogleSignIn.getClient(this,gOptions);
-        
     }
 
     private void performLogin() {
-        String username = usernameEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String username = usernameEditText.getText().toString();
+                    String password = passwordEditText.getText().toString();
+                    URL url = new URL("http://10.0.2.2/phpcode/fypTest/api_postDetailRestaurant.php");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setDoOutput(true);
+                    String data = "username=" + username + "&password=" + password;
 
-        // Here, add your validation logic or network request to authenticate the user.
-        // This is a simplistic example and should include error handling and security measures for a real app.
-        if ("expectedUsername".equals(username) && "expectedPassword".equals(password)) {
-            // Login successful
-            // Transition to another activity or update UI accordingly
-        } else {
-            // Login failed
-            // Show error message
-        }
+                    OutputStream os = conn.getOutputStream();
+                    os.write(data.getBytes(StandardCharsets.UTF_8));
+                    os.flush();
+                    os.close();
+
+                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    final StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        response.append(line);
+                    }
+                    br.close();
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
+
+
 }
 
