@@ -1,6 +1,5 @@
 plugins {
     id 'com.android.application'
-    id 'com.chaquo.python'
 }
 
 android {
@@ -31,17 +30,6 @@ android {
         if (propertiesFile.exists()) {
             properties.load(propertiesFile.newDataInputStream())
         }
-
-        def pythonPath = properties.getProperty("pythonPath")
-        if (pythonPath == null) {
-            throw new RuntimeException("Python path not found in local.properties")
-        }
-
-        python {
-            buildPython(pythonPath)
-            pip {
-                install "numpy"
-            }
         }
 
         useLibrary 'org.apache.http.legacy'
@@ -83,30 +71,26 @@ android {
             implementation 'com.google.android.gms:play-services-location:17.1.0'
 
             implementation "androidx.credentials:credentials:1.3.0-alpha02"
-
+            implementation 'androidx.appcompat:appcompat:1.6.1'
+            implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+            implementation 'com.google.android.material:material:1.11.0'
+            implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.7.0'
+            implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0'
+            implementation 'androidx.navigation:navigation-fragment:2.5.2'
+            implementation 'androidx.navigation:navigation-ui:2.5.2'
+            implementation 'com.google.android.gms:play-services-auth:21.0.0'
             // optional - needed for credentials support from play services, for devices running
             // Android 13 and below.
             implementation "androidx.credentials:credentials-play-services-auth:1.3.0-alpha02"
             implementation 'com.github.TutorialsAndroid:GButton:v1.0.19'
-            apply plugin: 'com.google.gms.google-services'
+           // apply plugin: 'com.google.gms.google-services'
 
 
 
         }
-    }
     buildFeatures {
         viewBinding true
     }
-}
+    }
 
-dependencies {
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.android.material:material:1.11.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.7.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0'
-    implementation 'androidx.navigation:navigation-fragment:2.5.2'
-    implementation 'androidx.navigation:navigation-ui:2.5.2'
-    implementation 'com.google.android.gms:play-services-auth:21.0.0'
-}
 
