@@ -55,7 +55,6 @@
         android:layout_marginLeft="343dp"
         android:layout_marginTop="9dp"
         android:background="#80FFC107"
-        android:onClick="changeAvatar"
         app:shapeAppearance="@style/circleImageStyle" />
 
     <ImageView

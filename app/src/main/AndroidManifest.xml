@@ -47,7 +47,14 @@
         </activity>
         <activity
             android:name=".foodrecommend"
-            android:exported="true"></activity>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".filter"
             android:exported="true">
@@ -58,6 +65,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".SettingsActivity" />
+        <activity android:name=".SurveyActivity"
+            android:exported="true">
+            <!-- Optional: If you want this activity to handle specific intents -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <!-- Add more intent properties as needed -->
+            </intent-filter>
+        </activity>
     </application>
+
 
 </manifest>

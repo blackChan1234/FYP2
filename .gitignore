@@ -21,3 +21,4 @@ app/build.gradle
 app/src/main/res/values-zh-rCN/strings.xml
 app/src/main/res/values/strings.xml
 local.properties
+local.properties

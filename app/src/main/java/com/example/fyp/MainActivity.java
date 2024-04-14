@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -32,7 +33,17 @@ public class MainActivity extends AppCompatActivity {
 
         // Setup the ViewPager with the sections adapter.
         setupViewPager(viewPager);
+        ImageView ivHead = findViewById(R.id.iv_head);
 
+        // Set a click listener on the ImageView
+        ivHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to start the SurveyActivity
+                Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
+                startActivity(intent);
+            }
+        });
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
