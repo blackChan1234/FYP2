@@ -35,34 +35,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:flexWrap="wrap"
-        app:justifyContent="center"
-        android:layout_marginBottom="16dp">
 
-        <Button
+        app:justifyContent="center"
+        android:layout_marginBottom="18dp">
+
+        <android.widget.Button
             android:id="@+id/buttonVegetarian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button"
             android:text="@string/Vegetarian"
             android:textColor="@color/button_text_color"
-            android:elevation="4dp"
             android:onClick="onDietaryRestrictionButtonClick"
             android:layout_marginEnd="8dp"/>
 
         <!-- Other buttons -->
         <!-- Make sure to change the ID for each button -->
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonVegan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button"
             android:text="@string/Vegan"
-            android:textColor="@color/button_text_color"
-            android:elevation="4dp"
+            android:textColor="@color/black"
+
             android:onClick="onDietaryRestrictionButtonClick"
             android:layout_marginEnd="8dp"/>
 
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonGlutenFree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
             android:elevation="4dp"
             android:onClick="onDietaryRestrictionButtonClick"
             android:layout_marginEnd="8dp"/>
-        <Button
+        <android.widget.Button
             android:id="@+id/buttondairyFree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
             android:elevation="4dp"
             android:onClick="onDietaryRestrictionButtonClick"
             android:layout_marginEnd="8dp"/>
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonOrganic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

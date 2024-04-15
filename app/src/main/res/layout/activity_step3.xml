@@ -35,7 +35,7 @@
         app:justifyContent="center"
         android:layout_marginBottom="16dp">
 
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonItalian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,10 +43,10 @@
             android:text="@string/Italian"
             android:textColor="@color/button_text_color"
             android:elevation="4dp"
-            android:onClick="onDietaryRestrictionButtonClick"
+            android:onClick="onCuisinePreferenceButtonClick"
             android:layout_marginEnd="8dp"/>
 
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonJapanese"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,10 +54,10 @@
             android:text="@string/Japanese"
             android:textColor="@color/button_text_color"
             android:elevation="4dp"
-            android:onClick="onDietaryRestrictionButtonClick"
+            android:onClick="onCuisinePreferenceButtonClick"
             android:layout_marginEnd="8dp"/>
 
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonMediterranean"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,9 +65,9 @@
             android:text="@string/Mediterranean"
             android:textColor="@color/button_text_color"
             android:elevation="4dp"
-            android:onClick="onDietaryRestrictionButtonClick"
+            android:onClick="onCuisinePreferenceButtonClick"
             android:layout_marginEnd="8dp"/>
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonIndian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,9 +75,9 @@
             android:text="@string/Indian"
             android:textColor="@color/button_text_color"
             android:elevation="4dp"
-            android:onClick="onDietaryRestrictionButtonClick"
+            android:onClick="onCuisinePreferenceButtonClick"
             android:layout_marginEnd="8dp"/>
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonThai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,19 +85,19 @@
             android:text="@string/Thai"
             android:textColor="@color/button_text_color"
             android:elevation="4dp"
-            android:onClick="onDietaryRestrictionButtonClick"
+            android:onClick="onCuisinePreferenceButtonClick"
             android:layout_marginEnd="8dp"/>
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonAmerican"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button"
             android:text="@string/American"
-            android:onClick="onDietaryRestrictionButtonClick"
+            android:onClick="onCuisinePreferenceButtonClick"
             android:textColor="@color/button_text_color"
             android:elevation="4dp"
             android:layout_marginEnd="8dp"/>
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonGreek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,9 +105,9 @@
             android:text="@string/Greek"
             android:textColor="@color/button_text_color"
             android:elevation="4dp"
-            android:onClick="onDietaryRestrictionButtonClick"
+            android:onClick="onCuisinePreferenceButtonClick"
             android:layout_marginEnd="8dp"/>
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonFrench"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -115,9 +115,9 @@
             android:text="@string/French"
             android:textColor="@color/button_text_color"
             android:elevation="4dp"
-            android:onClick="onDietaryRestrictionButtonClick"
+            android:onClick="onCuisinePreferenceButtonClick"
             android:layout_marginEnd="8dp"/>
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonVegetarian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -125,9 +125,9 @@
             android:text="@string/Vegetarian"
             android:textColor="@color/button_text_color"
             android:elevation="4dp"
-            android:onClick="onDietaryRestrictionButtonClick"
+            android:onClick="onCuisinePreferenceButtonClick"
             android:layout_marginEnd="8dp"/>
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonChinese"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -135,10 +135,10 @@
             android:text="@string/Chinese"
             android:textColor="@color/button_text_color"
             android:elevation="4dp"
-            android:onClick="onDietaryRestrictionButtonClick"
+            android:onClick="onCuisinePreferenceButtonClick"
             android:layout_marginEnd="8dp"/>
 
-        <Button
+        <android.widget.Button
             android:id="@+id/buttonMexican"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -146,7 +146,7 @@
             android:text="@string/Mexican"
             android:textColor="@color/button_text_color"
             android:elevation="4dp"
-            android:onClick="onDietaryRestrictionButtonClick"
+            android:onClick="onCuisinePreferenceButtonClick"
             android:layout_marginEnd="8dp"
             tools:ignore="DuplicateIds" />
 
