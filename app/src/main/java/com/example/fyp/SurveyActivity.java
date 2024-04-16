@@ -76,11 +76,12 @@ public class SurveyActivity extends AppCompatActivity {
         step1Layout.setVisibility(View.GONE);
         step2Layout.setVisibility(View.VISIBLE);
         progressBar.setProgress(66);
+        Log.d("SurveyActivity", "Step 1 Data - Gender: " + gender + ", Age: " + age + ", Weight: " + weight + ", Height: " + height);
     }
 
     public void goToStep3(View view) {
         // Store the values from step 2
-        dietaryRestrictions = getDietaryRestrictions();
+
 
         // Show the next step
         step2Layout.setVisibility(View.GONE);
@@ -90,48 +91,9 @@ public class SurveyActivity extends AppCompatActivity {
 
 
     public void submitForm(View view) {
-        // Collect data from Step 1
-        cuisinePreferences = getCuisinePreferences();
-
-        // Then, make the HTTP POST request to your PHP server
         makePostRequest();
     }
 
-
-
-
-    private String getDietaryRestrictions() {
-        StringBuilder restrictions = new StringBuilder();
-        ViewGroup layout = (ViewGroup) findViewById(R.id.layoutStep2);
-        for (int i = 0; i < layout.getChildCount(); i++) {
-            View child = layout.getChildAt(i);
-            if (child instanceof Button && child.isSelected()) {
-                Button button = (Button) child;
-                if (restrictions.length() > 0) restrictions.append(",");
-                restrictions.append(button.getText().toString());
-            }
-        }
-        return restrictions.toString();
-    }
-
-
-
-    private String getCuisinePreferences() {
-        StringBuilder preferences = new StringBuilder();
-        ViewGroup layout = (ViewGroup) findViewById(R.id.layoutStep3);
-        for (int i = 0; i < layout.getChildCount(); i++) {
-            View child = layout.getChildAt(i);
-            if (child instanceof Button) {
-                Button button = (Button) child;
-                Object tag = button.getTag();
-                if (tag != null && tag.toString().equals("selected")) {
-                    if (preferences.length() > 0) preferences.append(",");
-                    preferences.append(button.getText().toString());
-                }
-            }
-        }
-        return preferences.toString();
-    }
 
     public void onDietaryRestrictionButtonClick(View view) {
         Button button = (Button) view;
@@ -168,6 +130,7 @@ public class SurveyActivity extends AppCompatActivity {
                 }
             }
         }
+        Log.d("SurveyActivity", "Updated Dietary Restrictions: " + dietaryRestrictions);
     }
     private void updateCuisinePreferences(String cuisine, boolean isSelected) {
         if (isSelected) {
@@ -188,11 +151,13 @@ public class SurveyActivity extends AppCompatActivity {
                 }
             }
         }
+        Log.d("SurveyActivity", "Updated Cuisine Preferences: " + cuisinePreferences);
     }
 
     private void makePostRequest() {
         new Thread(() -> {
             try {
+
                 RequestBody formBody = new FormBody.Builder()
                         .add("email", email)  // Pass email
                         .add("password", password)  // Pass password
@@ -203,11 +168,11 @@ public class SurveyActivity extends AppCompatActivity {
                         .add("dietaryRestrictions", dietaryRestrictions)
                         .add("cuisinePreferences", cuisinePreferences)
                         .build();
-                if (gender == null || age.isEmpty() || weight.isEmpty() || height.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                if (gender == null || age.isEmpty() || weight.isEmpty() || height.isEmpty() || email.isEmpty() || password.isEmpty()|| dietaryRestrictions ==null|| cuisinePreferences==null) {
                     Toast.makeText(this, "Please fill all fields before submitting", Toast.LENGTH_LONG).show();
                     return;
                 }
-
+                Log.d("SurveyActivity", "Preparing to submit - Email: " + email + ", Password: " + password + ", Gender: " + gender + ", Age: " + age + ", Weight: " + weight + ", Height: " + height + ", Dietary Restrictions: " + dietaryRestrictions + ", Cuisine Preferences: " + cuisinePreferences);
                 Request request = new Request.Builder()
                         .url("http://10.0.2.2/FYP/insertuser.php")
                         .post(formBody)
@@ -217,7 +182,9 @@ public class SurveyActivity extends AppCompatActivity {
                 try (Response response = httpClient.newCall(request).execute()) {
                     String responseBody = response.body().string();
                     if (response.isSuccessful()) {
-                        runOnUiThread(() -> Toast.makeText(SurveyActivity.this, "Response: " + responseBody, Toast.LENGTH_LONG).show());
+                        runOnUiThread(() -> Toast.makeText(SurveyActivity.this, "Register Successful ", Toast.LENGTH_LONG).show());
+                        Intent intent = new Intent(SurveyActivity.this, LoginActivity.class);
+                        startActivity(intent);
                     } else {
                         runOnUiThread(() -> Toast.makeText(SurveyActivity.this, "Failed to submit data: " + responseBody, Toast.LENGTH_LONG).show());
                     }
