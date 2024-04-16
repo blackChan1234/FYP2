@@ -140,4 +140,5 @@
     <string name="Greek">Greek</string>
     <string name="French">French</string>
     <string name="cusineType">What type of cuisine do you prefer?</string>
+    <string name="ProfileActivity">ProfileActivity</string>
 </resources>
