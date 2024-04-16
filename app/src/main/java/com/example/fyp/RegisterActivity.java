@@ -75,7 +75,7 @@ public class RegisterActivity extends Activity {
     }
 
     private void checkEmailAndRegister(final String email, final String password) {
-        String url = "http://10.0.2.2/FYP/getuserdata.php";
+        String url = "http://10.0.2.2/database/getuserdata.php";
 
         RequestQueue queue = Volley.newRequestQueue(this);
         JSONObject jsonBody = new JSONObject();

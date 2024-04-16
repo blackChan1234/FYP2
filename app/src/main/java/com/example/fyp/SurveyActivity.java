@@ -174,7 +174,7 @@ public class SurveyActivity extends AppCompatActivity {
                 }
                 Log.d("SurveyActivity", "Preparing to submit - Email: " + email + ", Password: " + password + ", Gender: " + gender + ", Age: " + age + ", Weight: " + weight + ", Height: " + height + ", Dietary Restrictions: " + dietaryRestrictions + ", Cuisine Preferences: " + cuisinePreferences);
                 Request request = new Request.Builder()
-                        .url("http://10.0.2.2/FYP/insertuser.php")
+                        .url("http://10.0.2.2/database/insertuser.php")
                         .post(formBody)
                         .build();
 

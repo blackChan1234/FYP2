@@ -121,7 +121,7 @@ public class RecommendFragment extends Fragment {
     }
     private void fetchJsonAndPopulateUI(final TextView mealNameTextView, final ImageView foodimageView, final Dialog dialog) {
         OkHttpClient client = new OkHttpClient();
-        String url = "http://10.0.2.2/FYP/getData.php"; // Ensure this URL is correct and accessible
+        String url = "http://10.0.2.2/database/getData.php"; // Ensure this URL is correct and accessible
 
         Request request = new Request.Builder()
                 .url(url)

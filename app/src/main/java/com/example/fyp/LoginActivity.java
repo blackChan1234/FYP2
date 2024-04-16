@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     String username = usernameEditText.getText().toString();
                     String password = passwordEditText.getText().toString();
-                    URL url = new URL("http://10.0.2.2/phpcode/fypTest/api_login.php");
+                    URL url = new URL("http://10.0.2.2/database/phpServer/api_login.php");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
                     conn.setDoOutput(true);
@@ -91,6 +91,8 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
                         }
                     });
                 } catch (Exception e) {

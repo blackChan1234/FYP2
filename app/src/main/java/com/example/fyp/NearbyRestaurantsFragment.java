@@ -174,7 +174,7 @@ private ArrayList<NearbyRestaurant> jsonStringToNearbyRestaurant(ArrayList<Nearb
     }
     public String fetchRestaurants(String coordinates, int maxDistance) {
         // URL of the API endpoint
-        String url = "http://10.0.2.2/phpcode/fypTest/api_postDetailRestaurant.php";
+        String url = "http://10.0.2.2/database/phpServer/api_postDetailRestaurant.php";
 
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             HttpPost post = new HttpPost(url);
