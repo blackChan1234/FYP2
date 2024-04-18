@@ -41,7 +41,6 @@ android {
             pip {
                 install "numpy"
                 install "pymongo"
-                install "json"
             }
         }
 
