@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(jsonData);
                 SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
-
+                editor.putString("id", jsonObject.optString("id", "N/A"));
                 // Assume your JSON object has keys like 'name', 'email', 'age', etc.
                 editor.putString("name", jsonObject.optString("name", "N/A"));
                 editor.putString("email", jsonObject.optString("email", "N/A"));
