@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -72,11 +75,69 @@ public class LoginActivity extends AppCompatActivity {
         return prefs.getBoolean("isLoggedIn", false);
     }
     private void saveLoginStatus(boolean isLoggedIn, String email) {
-        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+            SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("isLoggedIn", isLoggedIn);
         editor.putString("email", email);  // Optionally store user email or any other identifier
         editor.apply();
+        fetchUserData(email);
+    }
+    private void fetchUserData(String email) {
+        new Thread(() -> {
+            try {
+                URL url = new URL("http://10.0.2.2/database/phpServer/fetch_user_data.php");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setDoOutput(true);
+
+                String postData = "email=" + URLEncoder.encode(email, "UTF-8");
+                OutputStream os = conn.getOutputStream();
+                os.write(postData.getBytes(StandardCharsets.UTF_8));
+                os.flush();
+                os.close();
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    response.append(line);
+                }
+                br.close();
+
+                parseUserDataAndSave(response.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+    private void parseUserDataAndSave(String jsonData) {
+        runOnUiThread(() -> {
+            try {
+                JSONObject jsonObject = new JSONObject(jsonData);
+                SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+
+                // Assume your JSON object has keys like 'name', 'email', 'age', etc.
+                editor.putString("name", jsonObject.optString("name", "N/A"));
+                editor.putString("email", jsonObject.optString("email", "N/A"));
+                editor.putInt("age", jsonObject.optInt("age", 0)); // Assuming age is an integer
+                editor.putString("gender", jsonObject.optString("gender", "N/A"));
+                editor.putInt("weight", jsonObject.optInt("weight", 0));
+                editor.putInt("height", jsonObject.optInt("height", 0));
+                editor.putString("dietaryRestrictions", jsonObject.optString("dietaryRestrictions", "N/A"));
+                editor.putString("cuisinePreferences", jsonObject.optString("cuisinePreferences", "N/A"));
+
+                // Add other user details similarly
+                editor.apply();
+
+                Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                finish();  // Close login activity upon success
+
+            } catch (JSONException e) {
+                Toast.makeText(LoginActivity.this, "Error parsing user data", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
