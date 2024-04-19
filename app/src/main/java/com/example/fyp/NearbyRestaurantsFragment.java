@@ -2,6 +2,7 @@ package com.example.fyp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -12,11 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.Savesystem.Restaurant.NearbyRestaurant;
-
+import com.example.fyp.adapters.NearbyRestaurantAdapter;
 
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
@@ -30,17 +32,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.EmptyStackException;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.location.Location;
-
-
-import com.example.fyp.adapters.NearbyRestaurantAdapter;
-import com.google.android.gms.location.FusedLocationProviderClient;
 
 public class NearbyRestaurantsFragment extends Fragment implements LocationListener {
     Location location;
@@ -111,31 +104,31 @@ public class NearbyRestaurantsFragment extends Fragment implements LocationListe
 
 
 
-private ArrayList<NearbyRestaurant> jsonStringToNearbyRestaurant(ArrayList<NearbyRestaurant> restaurantList,String jsonString) throws JSONException {
-    JSONArray jsonArray = new JSONArray(jsonString);
+    private ArrayList<NearbyRestaurant> jsonStringToNearbyRestaurant(ArrayList<NearbyRestaurant> restaurantList,String jsonString) throws JSONException {
+        JSONArray jsonArray = new JSONArray(jsonString);
 
-    NearbyRestaurant r1;
-    for (int i = 0; i < jsonArray.length(); i++) {
-        Object item = jsonArray.get(i);
-        if (item instanceof JSONObject) {
-            JSONObject obj = (JSONObject) item;
-            if(obj.isNull("name") || obj.length()<3)
-                continue;
-            String name = obj.optString("name", "No name provided");
-            String address = obj.optString("address", "No address provided");
-            JSONArray restaurantCoordinates = obj.getJSONObject("location").getJSONArray("coordinates");
-            double distance = obj.getDouble("distance");
-            r1= new NearbyRestaurant();
-            r1.setLoc(address);
-            r1.setName(name);
-            r1.setDistance(distance);
-            restaurantList.add(r1);
+        NearbyRestaurant r1;
+        for (int i = 0; i < jsonArray.length(); i++) {
+            Object item = jsonArray.get(i);
+            if (item instanceof JSONObject) {
+                JSONObject obj = (JSONObject) item;
+                if(obj.isNull("name") || obj.length()<3)
+                    continue;
+                String name = obj.optString("name", "No name provided");
+                String address = obj.optString("address", "No address provided");
+                JSONArray restaurantCoordinates = obj.getJSONObject("location").getJSONArray("coordinates");
+                double distance = obj.getDouble("distance");
+                r1= new NearbyRestaurant();
+                r1.setLoc(address);
+                r1.setName(name);
+                r1.setDistance(distance);
+                restaurantList.add(r1);
 
+            }
         }
-    }
-            return restaurantList;
+        return restaurantList;
 
-}
+    }
     private void initiateFetchRestaurants() {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler handler = new Handler(Looper.getMainLooper());
@@ -143,8 +136,8 @@ private ArrayList<NearbyRestaurant> jsonStringToNearbyRestaurant(ArrayList<Nearb
         executor.execute(() -> {
             // Replace these with your actual values or method calls to get them
 
-//            String coordinates = "[114.1062036, 22.3425344]";
-            String coordinates = "["+location.getLongitude()+", "+location.getLatitude()+"]";
+            String coordinates = "[114.1062036, 22.3425344]";
+//            String coordinates = "["+location.getLongitude()+", "+location.getLatitude()+"]";
 
             int maxDistance = 5000;
 
@@ -174,7 +167,7 @@ private ArrayList<NearbyRestaurant> jsonStringToNearbyRestaurant(ArrayList<Nearb
     }
     public String fetchRestaurants(String coordinates, int maxDistance) {
         // URL of the API endpoint
-        String url = "http://10.0.2.2/database/phpServer/api_postDetailRestaurant.php";
+        String url = "http://10.0.2.2/phpcode/fypTest/api_postDetailRestaurant.php";
 
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             HttpPost post = new HttpPost(url);
