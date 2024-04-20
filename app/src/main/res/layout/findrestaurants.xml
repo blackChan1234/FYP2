@@ -138,27 +138,122 @@
 
                     <TableRow>
 
-                        <CheckBox
-                            android:id="@+id/japanese"
-                            android:layout_width="wrap_content"
+                        <CheckBox android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/japanese"
+                            android:text="Asian"
+                            android:layout_column="1"
+                            android:layout_weight="1"/>
+                        <CheckBox android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="European"
+                            android:layout_column="2"
+                            android:layout_weight="1"/>
+                        <CheckBox android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="German"
+                            android:layout_column="3"
+                            android:layout_weight="1"/>
+                    </TableRow>
+
+                    <TableRow>
+
+                        <CheckBox
+                            android:id="@+id/Greek"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Greek"
+                            android:layout_column="1"
+                            android:layout_weight="1"/>
+                        <CheckBox
+                            android:id="@+id/Japanese"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Japanese"
+                            android:layout_column="1"
+                            android:layout_weight="1"/>
+                        <CheckBox
+                            android:id="@+id/Mediterranean"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mediterranean"
                             android:layout_column="1"
                             android:layout_weight="1"/>
 
-                        <CheckBox
-                            android:id="@+id/sushi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sushi_sashimi"
-                            android:layout_column="2"
-                            android:layout_weight="1"/>
+
+
+                    </TableRow>
+
+                    <TableRow>
 
                         <CheckBox
-                            android:id="@+id/buffet"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/Mexican"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/buffet"
+                            android:text="Mexican"
+                            android:layout_column="1"
+
+                            />
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/Dish_Types"
+                    android:textSize="20sp"
+                    tools:ignore="RtlHardcoded" />
+
+                <ImageButton
+                    android:id="@+id/Dish_Types_hide"
+                    android:layout_width="24dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@color/white"
+                    android:contentDescription="@string/Hide"
+                    android:src="@drawable/baseline_arrow_drop_up_24"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+
+                android:id="@+id/Dish_Types"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TableRow>
+                        <CheckBox
+                            android:id="@+id/Dinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dinner"
+                            android:layout_column="1"
+                            android:layout_weight="1"/>
+                        <CheckBox
+                            android:id="@+id/Lunch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Lunch"
+                            android:layout_column="1"
+                            android:layout_weight="1"/>
+                        <CheckBox
+                            android:id="@+id/Main_course"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Main course"
                             android:layout_column="3"
                             android:layout_weight="1"/>
 
@@ -166,56 +261,20 @@
 
                     <TableRow>
 
-                        <CheckBox
-                            android:id="@+id/dim_sum_restaurant"
-                            android:layout_width="wrap_content"
+                        <CheckBox android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/dim_sum_restaurant"
+                            android:text="Main dish"
                             android:layout_column="1"
                             android:layout_weight="1"/>
-
-                        <CheckBox
-                            android:id="@+id/dessert"
-                            android:layout_width="wrap_content"
+                        <CheckBox android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/dessert"
-                            android:layout_column="2"
-                            android:layout_weight="1"/>
-
-                        <CheckBox
-                            android:id="@+id/french"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/french"
-                            android:layout_column="3"
-                            android:layout_weight="1"/>
-
-                    </TableRow>
-
-                    <TableRow>
-
-                        <CheckBox
-                            android:id="@+id/american"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/american"
+                            android:text="Salad"
                             android:layout_column="1"
                             android:layout_weight="1"/>
-
-                        <CheckBox
-                            android:id="@+id/hot_pot"
-                            android:layout_width="wrap_content"
+                        <CheckBox android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/hot_pot"
-                            android:layout_column="2"
-                            android:layout_weight="1"/>
-
-                        <CheckBox
-                            android:id="@+id/sichuan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sichuan"
-                            android:layout_column="3"
+                            android:text="Side dish"
+                            android:layout_column="1"
                             android:layout_weight="1"/>
 
                     </TableRow>

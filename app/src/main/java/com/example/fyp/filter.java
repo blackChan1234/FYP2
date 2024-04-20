@@ -1,18 +1,25 @@
 package com.example.fyp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 public class filter extends AppCompatActivity {
     private LinearLayout dropdownLayout;
     private ImageButton filter_hide,area_hide,preference_hide,cuisine_hide;
     private SearchView searchView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +31,11 @@ public class filter extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Search(query);
+                try {
+                    Search(query);
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException(e);
+                }
                 return false;
             }
             @Override
@@ -78,11 +89,19 @@ public class filter extends AppCompatActivity {
     }
 
 
-    public void Search(String query){
+    @SuppressLint("SuspiciousIndentation")
+    public void Search(String query) throws UnsupportedEncodingException {
 
         String apiURL = "http://10.0.2.2/phpcode/fypTest/api_getFoodByDatailTag.php";
-        new PostRequestFoodByDatailTag().execute(apiURL);
-//        editText.setText("1");
+
+        ArrayList<CheckBox> Cusines = null;
+        String postData="";
+        for (int i = 0; i < Cusines.size(); i++) {
+            CheckBox Cusine =Cusines.get(i);
+            if( Cusine.isChecked())
+            postData += "cusine=" + URLEncoder.encode((String) Cusine.getText(), "UTF-8");
+        }
+        new PostRequestFoodByDatailTag(postData).execute(apiURL);
         Log.d("Search",query);
     }
     public void hideFilter(ImageButton btn, LinearLayout dropdownLayout) {

@@ -12,8 +12,10 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class PostRequestFoodByDatailTag extends AsyncTask<String, Void, String> {
-
-
+    String postData="";
+    public PostRequestFoodByDatailTag( String postData){
+        this.postData =postData;
+    }
     @Override
     protected String doInBackground(String... params) {
         try {
