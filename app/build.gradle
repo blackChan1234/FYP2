@@ -36,6 +36,7 @@ android {
             throw new RuntimeException("Python path not found in local.properties")
         }
 
+
         python {
             buildPython(pythonPath)
             pip {

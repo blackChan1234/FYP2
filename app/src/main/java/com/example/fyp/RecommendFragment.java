@@ -146,7 +146,6 @@ public class RecommendFragment extends Fragment {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                             Food meal = parseFoodFromJsonObject(jsonObject); // Ensure this method is implemented correctly
-                            Log.e("parseFoodFromJsonObject", "Parsed data for meal: " + meal.toString()); // Log parsed meal data (make sure your Food class has a proper toString() method)
                             meals.add(meal);
                         }
 
@@ -217,7 +216,7 @@ public class RecommendFragment extends Fragment {
         List<String> diets = convertJsonArrayToList(jsonObject.getJSONArray("diets"));
         ArrayList<Ingredient> ingredients = parseIngredients(jsonObject.getJSONObject("ingredients"));
         ArrayList<Nutrition> nutritions = parseNutritions(jsonObject.getJSONObject("nutrition"));
-        Log.d("parseNutritions", "n list" + nutritions);
+
 
         return new Food(id,_id, title, image, sourceUrl, vegetarian, vegan, glutenFree, dairyFree,
                 preparationMinutes, cookingMinutes, aggregateLikes, healthScore, creditsText,
@@ -243,13 +242,10 @@ public class RecommendFragment extends Fragment {
                                 nutrient.getDouble("amount"),
                                 nutrient.getString("unit")
                         );
-                        nutritions.add(nutrition);
-                        Log.d("parseNutritions", "d" + nutritions);
                     }
 
             }
         } catch (JSONException e) {
-            Log.e("parseNutritions", "Error parsing nutritions", e);
         }
         return nutritions;
     }
@@ -266,8 +262,6 @@ public class RecommendFragment extends Fragment {
                 }
                 return list;
             }
-
-
 
 });
     }}

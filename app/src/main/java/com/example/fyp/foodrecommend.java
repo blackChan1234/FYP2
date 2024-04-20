@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,6 +47,19 @@ public class foodrecommend extends AppCompatActivity {
         }
 
         initializeViews();
+        mealImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFeedbackDialog();
+            }
+        });
+        Button feedbackButton = findViewById(R.id.feedbackButton);
+        feedbackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFeedbackDialog();
+            }
+        });
 
         populateData(currentMeal);
     }
@@ -70,6 +87,39 @@ public class foodrecommend extends AppCompatActivity {
         nutritionFactsRecyclerView.setLayoutManager(horizontalLayoutManager1);
         ingredientsRecyclerView.setLayoutManager(horizontalLayoutManager2);
 
+
+    }
+    private void showFeedbackDialog() {
+        String[] options = {"Like", "Dislike", "Not Interested"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Feedback on Meal");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        // Handle "Like" option
+                        Log.i("Feedback", "User liked the meal");
+                        break;
+                    case 1:
+                        // Handle "Dislike" option
+                        Log.i("Feedback", "User disliked the meal");
+                        break;
+                    case 2:
+                        // Handle "Not Interested" option
+                        Log.i("Feedback", "User is not interested in the meal");
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void populateData(Food currentMeal) {
