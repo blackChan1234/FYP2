@@ -139,17 +139,20 @@
                     <TableRow>
 
                         <CheckBox android:layout_width="match_parent"
+                            android:id="@+id/asian"
                             android:layout_height="wrap_content"
                             android:text="Asian"
                             android:layout_column="1"
                             android:layout_weight="1"/>
                         <CheckBox android:layout_width="match_parent"
+                            android:id="@+id/european"
                             android:layout_height="wrap_content"
                             android:text="European"
                             android:layout_column="2"
                             android:layout_weight="1"/>
                         <CheckBox android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:id="@+id/german"
                             android:text="German"
                             android:layout_column="3"
                             android:layout_weight="1"/>
@@ -261,17 +264,23 @@
 
                     <TableRow>
 
-                        <CheckBox android:layout_width="match_parent"
+                        <CheckBox
+                            android:id="@+id/Main_dish"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Main dish"
                             android:layout_column="1"
                             android:layout_weight="1"/>
-                        <CheckBox android:layout_width="match_parent"
+                        <CheckBox
+                            android:id="@+id/Salad"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Salad"
                             android:layout_column="1"
                             android:layout_weight="1"/>
-                        <CheckBox android:layout_width="match_parent"
+                        <CheckBox
+                            android:id="@+id/Side_dish"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Side dish"
                             android:layout_column="1"
