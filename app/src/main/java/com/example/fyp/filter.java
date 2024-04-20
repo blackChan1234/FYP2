@@ -12,8 +12,9 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
+import com.google.gson.Gson;
+
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 public class filter extends AppCompatActivity {
     private LinearLayout dropdownLayout;
@@ -25,8 +26,12 @@ public class filter extends AppCompatActivity {
             checkBoxSouthern,checkBoxYauTsimMong,checkBoxShamShuiPo,checkBoxKowloonCity,
             checkBoxWongTaiSin,checkBoxKwunTong,checkBoxTsuenWan,checkBoxTuenMun,checkBoxYuenLong,
             checkBoxNorth,checkBoxTaiPo,checkBoxShaTin,checkBoxSaiKung,checkBoxIslands,checkBoxSideDish;
+    ArrayList dishType =new ArrayList(),cuisine =new ArrayList();
+    private String district="";
+
     public void initAllCheckboxes(){
         // Define and initialize each checkbox
+
          checkBoxAsian = findViewById(R.id.asian);
          checkBoxEuropean = findViewById(R.id.european);
          checkBoxGerman = findViewById(R.id.german);
@@ -58,45 +63,85 @@ public class filter extends AppCompatActivity {
          checkBoxSaiKung = findViewById(R.id.sai_kung);
          checkBoxIslands = findViewById(R.id.islands);
     }
+
     private void checkAllCheckboxes() {
 
-
+        dishType =new ArrayList();
+        cuisine =new ArrayList();
         // Log status for each checkbox
-        logCheckboxStatus("Asian", checkBoxAsian.isChecked());
-        logCheckboxStatus("European", checkBoxEuropean.isChecked());
-        logCheckboxStatus("German", checkBoxGerman.isChecked());
-        logCheckboxStatus("Greek", checkBoxGreek.isChecked());
-        logCheckboxStatus("Japanese", checkBoxJapanese.isChecked());
-        logCheckboxStatus("Mediterranean", checkBoxMediterranean.isChecked());
-        logCheckboxStatus("Mexican", checkBoxMexican.isChecked());
-        logCheckboxStatus("Dinner", checkBoxDinner.isChecked());
-        logCheckboxStatus("Lunch", checkBoxLunch.isChecked());
-        logCheckboxStatus("Main Course", checkBoxMainCourse.isChecked());
-        logCheckboxStatus("Main Dish", checkBoxMainDish.isChecked());
-        logCheckboxStatus("Salad", checkBoxSalad.isChecked());
-        logCheckboxStatus("Side Dish", checkBoxSideDish.isChecked());
-        logCheckboxStatus("Central and Western", checkBoxCentralAndWestern.isChecked());
-        logCheckboxStatus("Wan Chai", checkBoxWanChai.isChecked());
-        logCheckboxStatus("Eastern", checkBoxEastern.isChecked());
-        logCheckboxStatus("Southern", checkBoxSouthern.isChecked());
-        logCheckboxStatus("Yau Tsim Mong", checkBoxYauTsimMong.isChecked());
-        logCheckboxStatus("Sham Shui Po", checkBoxShamShuiPo.isChecked());
-        logCheckboxStatus("Kowloon City", checkBoxKowloonCity.isChecked());
-        logCheckboxStatus("Wong Tai Sin", checkBoxWongTaiSin.isChecked());
-        logCheckboxStatus("Kwun Tong", checkBoxKwunTong.isChecked());
-        logCheckboxStatus("Tsuen Wan", checkBoxTsuenWan.isChecked());
-        logCheckboxStatus("Tuen Mun", checkBoxTuenMun.isChecked());
-        logCheckboxStatus("Yuen Long", checkBoxYuenLong.isChecked());
-        logCheckboxStatus("North", checkBoxNorth.isChecked());
-        logCheckboxStatus("Tai Po", checkBoxTaiPo.isChecked());
-        logCheckboxStatus("Sha Tin", checkBoxShaTin.isChecked());
-        logCheckboxStatus("Sai Kung", checkBoxSaiKung.isChecked());
-        logCheckboxStatus("Islands", checkBoxIslands.isChecked());
+        verifyCuisineForAdd("Asian", checkBoxAsian.isChecked());
+        verifyCuisineForAdd("European", checkBoxEuropean.isChecked());
+        verifyCuisineForAdd("German", checkBoxGerman.isChecked());
+        verifyCuisineForAdd("Greek", checkBoxGreek.isChecked());
+        verifyCuisineForAdd("Japanese", checkBoxJapanese.isChecked());
+        verifyCuisineForAdd("Mediterranean", checkBoxMediterranean.isChecked());
+        verifyCuisineForAdd("Mexican", checkBoxMexican.isChecked());
+        //cuisineWhitelist= ['Asian','European','German','Greek','Japanese','Mediterranean','Mexican']
+//
+        verifyDishTypeForAdd("dinner", checkBoxDinner.isChecked());
+        verifyDishTypeForAdd("lunch", checkBoxLunch.isChecked());
+        verifyDishTypeForAdd("main course", checkBoxMainCourse.isChecked());
+        verifyDishTypeForAdd("main dish", checkBoxMainDish.isChecked());
+        verifyDishTypeForAdd("salad", checkBoxSalad.isChecked());
+        verifyDishTypeForAdd("side dish", checkBoxSideDish.isChecked());
+        //dishTypeWhitelist =['dinner', 'lunch', 'main course', 'main dish', 'salad', 'side dish']
+        //District 18
+        setDistrict("Central and Western", checkBoxCentralAndWestern.isChecked());
+        setDistrict("Wan Chai", checkBoxWanChai.isChecked());
+        setDistrict("Eastern", checkBoxEastern.isChecked());
+        setDistrict("Southern", checkBoxSouthern.isChecked());
+        setDistrict("Yau Tsim Mong", checkBoxYauTsimMong.isChecked());
+        setDistrict("Sham Shui Po", checkBoxShamShuiPo.isChecked());
+        setDistrict("Kowloon City", checkBoxKowloonCity.isChecked());
+        setDistrict("Wong Tai Sin", checkBoxWongTaiSin.isChecked());
+        setDistrict("Kwun Tong", checkBoxKwunTong.isChecked());
+        setDistrict("Tsuen Wan", checkBoxTsuenWan.isChecked());
+        setDistrict("Tuen Mun", checkBoxTuenMun.isChecked());
+        setDistrict("Yuen Long", checkBoxYuenLong.isChecked());
+        setDistrict("North", checkBoxNorth.isChecked());
+        setDistrict("Tai Po", checkBoxTaiPo.isChecked());
+        setDistrict("Sha Tin", checkBoxShaTin.isChecked());
+        setDistrict("Sai Kung", checkBoxSaiKung.isChecked());
+        setDistrict("Islands", checkBoxIslands.isChecked());
     }
 
-    private void logCheckboxStatus(String checkboxName, boolean isChecked) {
+    private void setDistrict(String district, boolean checked) {
+        if (checked) {
+            this.district=district;
+        }
+    }
+
+    private void verifyDishTypeForAdd(String checkboxName, boolean isChecked) {
+        Log.d("verifyDishTypeForAdd("+checkboxName+")",   " is " + (isChecked ? "checked" : "unchecked"));
+        if (isChecked) {
+        String dishTypeWhitelist [] ={"dinner", "lunch", "main course", "main dish", "salad", "side dish"};
+
+            for (int i = 0; i < dishTypeWhitelist.length; i++) {
+                if (checkboxName.equals(dishTypeWhitelist[i])) {
+                    cuisine.add(checkboxName);
+                    break;
+                }
+            }
+
+        }
 
     }
+    private void verifyCuisineForAdd(String checkboxName, boolean isChecked) {
+        Log.d("verifyCuisineForAdd("+checkboxName+")",   " is " + (isChecked ? "checked" : "unchecked"));
+        if (isChecked) {
+            String cuisineWhitelist [] = {"Asian","European","German","Greek","Japanese","Mediterranean", "Mexican"};
+
+            for (int i = 0; i < cuisineWhitelist.length; i++) {
+                if (checkboxName.equals(cuisineWhitelist[i])) {
+                    dishType.add(checkboxName);
+                    break;
+                }
+            }
+
+        }
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +149,7 @@ public class filter extends AppCompatActivity {
 
         searchView = findViewById(R.id.search_view);
         searchView.setSubmitButtonEnabled(true);
+        initAllCheckboxes();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -167,16 +213,36 @@ public class filter extends AppCompatActivity {
 
     @SuppressLint("SuspiciousIndentation")
     public void Search(String query) throws UnsupportedEncodingException {
+        checkAllCheckboxes();
+        String apiURL = "http://10.0.2.2/phpcode/fypTest/api_postFoodByDatailTag.php";
 
-        String apiURL = "http://10.0.2.2/phpcode/fypTest/api_getFoodByDatailTag.php";
-
-        ArrayList<CheckBox> Cusines = null;
         String postData="";
-        for (int i = 0; i < Cusines.size(); i++) {
-            CheckBox Cusine =Cusines.get(i);
-            if( Cusine.isChecked())
-            postData += "cusine=" + URLEncoder.encode((String) Cusine.getText(), "UTF-8");
+        //    ArrayList dishType =new ArrayList(),cuisine =new ArrayList();
+        Gson gson = new Gson();
+
+        if(dishType.size()>0) {
+            postData += "dishType=";
+            for (int i = 0; i < dishType.size(); i++) {
+                String json = gson.toJson(dishType.get(i));
+                postData+=json;
+//                postData +=  URLEncoder.encode( json, "UTF-8") ;
+                if(i< dishType.size()-1)
+                    postData +=  ",";
+            }
+
         }
+            if(cuisine.size()>0){
+                postData += "&cuisines=";
+                for (int i = 0; i < cuisine.size(); i++) {
+                    String json = gson.toJson(cuisine.get(i));
+                    postData+=json;
+//                    postData += URLEncoder.encode( json, "UTF-8");
+                    if(i< cuisine.size()-1)
+                        postData +=  ",";
+                }
+
+            }
+
         new PostRequestFoodByDatailTag(postData).execute(apiURL);
         Log.d("Search",query);
     }

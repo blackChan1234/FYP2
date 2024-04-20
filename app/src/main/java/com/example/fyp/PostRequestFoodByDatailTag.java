@@ -26,7 +26,7 @@ public class PostRequestFoodByDatailTag extends AsyncTask<String, Void, String> 
             connection.setDoOutput(true);
 
             // 准备要发送的数据
-            String postData = "vegan=false"; // 示例数据，请替换为实际数据
+//            String postData = "vegan=false"; // 示例数据，请替换为实际数据
 
             // 发送数据
             OutputStream os = connection.getOutputStream();
@@ -59,6 +59,8 @@ public class PostRequestFoodByDatailTag extends AsyncTask<String, Void, String> 
             // 在这里处理返回的 JSON 数据
         } else {
             Log.e("PostRequestTask", "Failed to receive response");
+            Log.e("PostRequestTask", postData);
+
         }
     }
 }
