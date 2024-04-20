@@ -61,15 +61,6 @@
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
         android:layout_gravity="center" />
-        <com.developer.gbuttons.GoogleSignInButton
-            android:id="@+id/gbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/google_sign_up"
-            android:layout_margin="10dp"
-            android:layout_gravity="center"
-            app:isDarkTheme="true" />
     </LinearLayout>
 
 </LinearLayout>
