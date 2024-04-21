@@ -12,7 +12,7 @@ import com.example.fyp.R;
 
 public class ImageSliderAdapter extends RecyclerView.Adapter<ImageSliderAdapter.SliderViewHolder> {
 
-    private int[] images; // 图片资源数组
+    private int[] images;
 
     public ImageSliderAdapter(int[] images) {
         this.images = images;
