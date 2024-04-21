@@ -241,10 +241,10 @@
                     android:layout_marginLeft="5dp" />
 
                 <Spinner
-                    android:layout_height="48dp"
                     android:layout_width="wrap_content"
-                    android:entries="@array/certainFoodsQuestionOptions"
-                    android:layout_weight="1" />
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:entries="@array/certainFoodsQuestionOptions" />
 
             </LinearLayout>
 

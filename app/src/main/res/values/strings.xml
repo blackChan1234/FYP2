@@ -76,7 +76,7 @@
     <string name="filter_by">Filter by</string>
     <string name="Area">Area</string>
     <string name="Hide">Hide</string>
-    <string name="language">English</string>
+    <string name="language">language</string>
     <string name="central_and_western">Central and Western</string>
     <string name="hong_kong">HONG KONG</string>
     <string name="wan_chai">Wan Chai</string>
@@ -142,4 +142,13 @@
     <string name="cusineType">What type of cuisine do you prefer?</string>
     <string name="ProfileActivity">ProfileActivity</string>
     <string name="Dish_Types">Dish Types</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="email">Email</string>
+    <string name="dietary_restrictions">Dietary Restrictions</string>
+    <string name="cuisine_preferences">Cuisine Preferences</string>
+    <string name="profile_image_description">Profile Image</string>
+    <string name="age">Age</string>
+
+
+
 </resources>

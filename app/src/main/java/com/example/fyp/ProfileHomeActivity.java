@@ -1,35 +1,50 @@
 package com.example.fyp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileHomeActivity extends AppCompatActivity {
 
-    private TextView profileName;
-    private TextView profileEmail;
-    private ImageView profileImage;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile); // 替換成你的佈局文件名稱
+        setContentView(R.layout.profile);
 
-        profileName = findViewById(R.id.profile_name);
-        profileEmail = findViewById(R.id.profile_email);
-        profileImage = findViewById(R.id.profile_image);
-
-        Button btnSetting = findViewById(R.id.btnReview);
-        btnSetting.setOnClickListener(new View.OnClickListener() {
+        Button btnReview = findViewById(R.id.btnReview);
+        Button btnSetting1 = findViewById(R.id.btnSetting1);
+        Button btnPerson = findViewById(R.id.btnPerson);
+        ImageButton btnHome = findViewById(R.id.btnHome);
+        btnReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileHomeActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileHomeActivity.this, PersonActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnSetting1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileHomeActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileHomeActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

@@ -49,10 +49,10 @@
         android:layout_below="@+id/profile_section"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingBottom="32dp">
+        android:paddingBottom="3dp">
 
         <!-- Replicate this Button structure for as many buttons as you need -->
 
@@ -67,7 +67,7 @@
             android:textAlignment="viewStart" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button2"
+            android:id="@+id/btnPerson"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="16dp"
@@ -78,14 +78,13 @@
             android:textAlignment="viewStart" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button3"
+            android:id="@+id/btnSetting1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="16dp"
-
             android:drawablePadding="10dp"
             android:paddingStart="10dp"
-            android:text="Account Settings"
+            android:text="Settings"
             android:textAlignment="viewStart" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -98,8 +97,14 @@
             android:text="Friend Upduate"
             android:textAlignment="viewStart" />
 
-
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_home_black_24dp"
+            android:layout_gravity="bottom|left" />
 
     </LinearLayout>
+
 
 </RelativeLayout>
