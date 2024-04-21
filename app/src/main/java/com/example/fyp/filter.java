@@ -273,7 +273,7 @@ public class filter extends AppCompatActivity {
             String result =request.getResult();
          fragment =new RestaurantsFragment();
         fragment.setPostResult(result);
-        setupViewPager(viewPager);
+//        setupViewPager(viewPager);
 
         Log.d("Search",query);
     }

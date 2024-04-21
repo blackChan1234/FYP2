@@ -1,18 +1,14 @@
 package com.example.fyp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class test2Activity extends AppCompatActivity implements LocationListener {
     Location location;
@@ -21,7 +17,7 @@ public class test2Activity extends AppCompatActivity implements LocationListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test1);
+        setContentView(R.layout.nearby_restaurants_actity);
 
         locMgr=(LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 

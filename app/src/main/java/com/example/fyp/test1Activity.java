@@ -25,7 +25,7 @@ public class test1Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Set the user interface layout for this activity
-        this.setContentView(R.layout.test1);
+        this.setContentView(R.layout.nearby_restaurants_actity);
         tv=  findViewById(R.id.textView1);
         initiateFetchRestaurants();
 

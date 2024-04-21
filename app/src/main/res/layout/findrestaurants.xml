@@ -490,11 +490,16 @@
 
                 </TableLayout>
 
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/viewPager"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/factsRecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/tabLayout"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView1"
+                    android:layout_marginTop="8dp"/>
 
             </LinearLayout>
 
