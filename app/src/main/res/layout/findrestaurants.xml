@@ -490,11 +490,12 @@
 
                 </TableLayout>
 
-                <FrameLayout
-                    android:id="@+id/fragment_container"
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/tabLayout"/>
+
             </LinearLayout>
 
         </LinearLayout>

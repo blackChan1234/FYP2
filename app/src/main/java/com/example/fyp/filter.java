@@ -9,17 +9,25 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
+
 public class filter extends AppCompatActivity {
     private LinearLayout dropdownLayout;
     private ImageButton filter_hide,area_hide,preference_hide,cuisine_hide;
     private SearchView searchView;
+    private RestaurantsFragment fragment;
     CheckBox checkBoxAsian,checkBoxEuropean,checkBoxGerman,checkBoxGreek,checkBoxJapanese
             ,checkBoxMediterranean,checkBoxMexican,checkBoxDinner,checkBoxLunch,checkBoxMainCourse,
             checkBoxMainDish,checkBoxSalad,checkBoxCentralAndWestern,checkBoxWanChai,checkBoxEastern,
@@ -143,7 +151,7 @@ public class filter extends AppCompatActivity {
 
     }
 
-
+    ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,12 +159,14 @@ public class filter extends AppCompatActivity {
 
         searchView = findViewById(R.id.search_view);
         searchView.setSubmitButtonEnabled(true);
+         viewPager = findViewById(R.id.viewPager);
         initAllCheckboxes();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 try {
                     Search(query);
+
 
                 } catch (UnsupportedEncodingException e) {
                     throw new RuntimeException(e);
@@ -261,8 +271,9 @@ public class filter extends AppCompatActivity {
         PostRequestFoodByDatailTag request =new PostRequestFoodByDatailTag(postData);
             request.execute(apiURL);
             String result =request.getResult();
-        RestaurantsFragment fragment =new RestaurantsFragment();
+         fragment =new RestaurantsFragment();
         fragment.setPostResult(result);
+        setupViewPager(viewPager);
 
         Log.d("Search",query);
     }
@@ -276,6 +287,47 @@ public class filter extends AppCompatActivity {
         }
     }
 
+    private void setupViewPager(ViewPager viewPager) {
+        filter.ViewPagerAdapter adapter = new filter.ViewPagerAdapter(getSupportFragmentManager());
+
+        // Add Fragments to the adapter. Each fragment corresponds to a tab.
+        adapter.addFragment(fragment, "result");
+
+        // Set the adapter onto the view pager
+        viewPager.setAdapter(adapter);
+    }
+
+
+
+    public class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
 
 }
 
