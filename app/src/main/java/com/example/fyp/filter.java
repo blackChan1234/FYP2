@@ -3,6 +3,8 @@ package com.example.fyp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -27,7 +29,11 @@ public class filter extends AppCompatActivity {
     private LinearLayout dropdownLayout;
     private ImageButton filter_hide,area_hide,preference_hide,cuisine_hide;
     private SearchView searchView;
+
+    //private searchFrame fragment;
+
     private RestaurantsFragment fragment;
+
     CheckBox checkBoxAsian,checkBoxEuropean,checkBoxGerman,checkBoxGreek,checkBoxJapanese
             ,checkBoxMediterranean,checkBoxMexican,checkBoxDinner,checkBoxLunch,checkBoxMainCourse,
             checkBoxMainDish,checkBoxSalad,checkBoxCentralAndWestern,checkBoxWanChai,checkBoxEastern,
@@ -165,7 +171,8 @@ public class filter extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 try {
-                    Search(query);
+                 Search(query);
+
 
 
                 } catch (UnsupportedEncodingException e) {
@@ -208,6 +215,7 @@ public class filter extends AppCompatActivity {
         preference_hide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 dropdownLayout = findViewById(R.id.preference);
                 hideFilter(preference_hide, dropdownLayout);
             }
@@ -270,12 +278,39 @@ public class filter extends AppCompatActivity {
 
         PostRequestFoodByDatailTag request =new PostRequestFoodByDatailTag(postData);
             request.execute(apiURL);
-            String result =request.getResult();
-         fragment =new RestaurantsFragment();
-        fragment.setPostResult(result);
-//        setupViewPager(viewPager);
 
-        Log.d("Search",query);
+
+//            AppCompatActivity app = this;
+//            request.setIntent(this);
+
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        fragment =new RestaurantsFragment();
+// 使用postDelayed來安排任務，例如延遲1秒（1000毫秒）
+        handler.postDelayed(new Runnable() {
+            @Override
+        public void run() {
+            // 這裡放置延遲後要執行的代碼
+                String result =request.getResult();
+
+
+            Log.d("avc", "onCreate: "+result);
+                fragment.setPostResult(result);
+            Log.d("Delay", "這是延遲2秒後的執行");
+            setupViewPager(viewPager);
+
+                dropdownLayout = findViewById(R.id.filter);
+                hideFilter(filter_hide, dropdownLayout);
+                dropdownLayout = findViewById(R.id.area);
+                hideFilter(area_hide, dropdownLayout);
+                dropdownLayout = findViewById(R.id.preference);
+                hideFilter(preference_hide, dropdownLayout);
+                dropdownLayout = findViewById(R.id.cuisine);
+                hideFilter(cuisine_hide, dropdownLayout);
+        }
+    }, 2000);
+//        showSearchResults(postData);
+
     }
     public void hideFilter(ImageButton btn, LinearLayout dropdownLayout) {
         if (dropdownLayout.getVisibility() == View.VISIBLE) {
@@ -287,12 +322,20 @@ public class filter extends AppCompatActivity {
         }
     }
 
+    private void showSearchResults(String result) {
+            Intent intent = new Intent(this, filterResult.class);
+            intent.putExtra("result", result);
+
+            startActivity(intent);
+    }
+
+
     private void setupViewPager(ViewPager viewPager) {
         filter.ViewPagerAdapter adapter = new filter.ViewPagerAdapter(getSupportFragmentManager());
 
-        // Add Fragments to the adapter. Each fragment corresponds to a tab.
-        adapter.addFragment(fragment, "result");
 
+        adapter.addFragment(new NearbyRestaurantsFragment(),"Booking");
+        adapter.addFragment(fragment,"menu");
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);
     }

@@ -32,6 +32,8 @@ public class RestaurantsFragment extends Fragment implements LocationListener {
     private RecyclerView nearFactsRecyclerView;
     RestaurantAdapter RestaurantAdapter;
     String postResult;
+    private boolean readyToLoad;
+
     @SuppressLint("MissingPermission")
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -56,7 +58,7 @@ public class RestaurantsFragment extends Fragment implements LocationListener {
         location=locMgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
 
-
+        initiateFetchRestaurants();
     }
 
 
@@ -94,11 +96,8 @@ public class RestaurantsFragment extends Fragment implements LocationListener {
 
 
 
-    private boolean jsonStringToRestaurant(ArrayList<Restaurant> restaurantList, String jsonString) throws JSONException {
-        if (jsonString == null) {
-            // Handle the case where jsonString is null
-            return false;
-        }
+    private ArrayList<Restaurant> jsonStringToRestaurant(ArrayList<Restaurant> restaurantList, String jsonString) throws JSONException {
+
 
         JSONArray jsonArray = new JSONArray(jsonString);
 
@@ -118,7 +117,7 @@ public class RestaurantsFragment extends Fragment implements LocationListener {
 
             }
         }
-            return true;
+            return restaurantList;
     }
 
     private void initiateFetchRestaurants() {
@@ -126,7 +125,7 @@ public class RestaurantsFragment extends Fragment implements LocationListener {
         try {
             ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
-            boolean isSuccess= jsonStringToRestaurant(restaurantList, postResult);
+            jsonStringToRestaurant(restaurantList, postResult);
 
             if(!restaurantList.isEmpty()&&! (restaurantList.size() == 0)) {
                 RestaurantAdapter = new RestaurantAdapter(restaurantList, this);
@@ -141,7 +140,9 @@ public class RestaurantsFragment extends Fragment implements LocationListener {
 
     public void setPostResult(String postResult){
         this.postResult = postResult;
-        initiateFetchRestaurants();
+        this.postResult = postResult;
+        this.readyToLoad = true;
+
     }
 
 
