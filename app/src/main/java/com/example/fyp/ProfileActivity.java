@@ -11,16 +11,26 @@ public class ProfileActivity extends AppCompatActivity {
 
     private TextView profileName;
     private TextView profileEmail;
+
+    private TextView profileAge;
     private ImageView profileImage;
+
+    private TextView profileWeight;
+    private TextView profileHeight;
+    private TextView profileDietaryRestrictions;
+    private TextView profileCuisinePreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.review);
-
         profileName = findViewById(R.id.profile_name);
         profileEmail = findViewById(R.id.profile_email);
-        profileImage = findViewById(R.id.profile_image);
+        profileAge = findViewById(R.id.profile_age);
+        profileWeight = findViewById(R.id.profile_weight);
+        profileHeight = findViewById(R.id.profile_height);
+        profileDietaryRestrictions = findViewById(R.id.profile_dietaryRestrictions);
+        profileCuisinePreferences = findViewById(R.id.profile_cuisinePreferences);
 
         loadProfile();
     }
@@ -38,6 +48,11 @@ public class ProfileActivity extends AppCompatActivity {
         String cuisinePreferences = prefs.getString("cuisinePreferences", "No cuisinePreferences defined");
         profileEmail.setText(email);
         profileName.setText(name);
+        profileAge.setText(age);
+        profileWeight.setText(weight);
+        profileHeight.setText(height);
+        profileDietaryRestrictions.setText(dietaryRestrictions);
+        profileCuisinePreferences.setText(cuisinePreferences);
         Log.d("SurveyActivity", "Preparing to submit - Email: " + email + ", Password: " + password + ", Gender: " + gender + ", Age: " + age + ", Weight: " + weight + ", Height: " + height + ", Dietary Restrictions: " + dietaryRestrictions + ", Cuisine Preferences: " + cuisinePreferences);
         // You can also set the profile image if you have a path saved
         // For example:

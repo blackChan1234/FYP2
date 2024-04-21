@@ -15,6 +15,10 @@ android {
         // Or use 'pickFirst' to include the first occurrence of the file and ignore subsequent ones.
         // pickFirst 'META-INF/DEPENDENCIES'
     }
+
+    dependencies {
+        implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    }
     defaultConfig {
         applicationId "com.example.fyp"
         minSdk 28
@@ -104,6 +108,12 @@ android {
             viewBinding true
         }
     }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
 
 
