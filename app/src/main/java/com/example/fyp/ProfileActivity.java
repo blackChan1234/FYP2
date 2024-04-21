@@ -40,25 +40,17 @@ public class ProfileActivity extends AppCompatActivity {
         String email = prefs.getString("email", "No email defined");
         String password = prefs.getString("password", "No password defined");
         String name = prefs.getString("name", "Foodie Lover");  // Assuming you saved name as well
-        int age = prefs.getInt("age", 0);
+        String age = String.valueOf(prefs.getInt("age", 0));
+        String weight = String.valueOf(prefs.getInt("weight", 0));
+        String height = String.valueOf(prefs.getInt("height", 0));
         String gender = prefs.getString("gender", "No gender defined");
-        int weight = prefs.getInt("weight", 0);
-        int height = prefs.getInt("height", 0);
         String dietaryRestrictions = prefs.getString("dietaryRestrictions", "No dietaryRestrictions defined");
         String cuisinePreferences = prefs.getString("cuisinePreferences", "No cuisinePreferences defined");
-        profileEmail.setText(email);
         profileName.setText(name);
         profileAge.setText(age);
         profileWeight.setText(weight);
         profileHeight.setText(height);
         profileDietaryRestrictions.setText(dietaryRestrictions);
         profileCuisinePreferences.setText(cuisinePreferences);
-        Log.d("SurveyActivity", "Preparing to submit - Email: " + email + ", Password: " + password + ", Gender: " + gender + ", Age: " + age + ", Weight: " + weight + ", Height: " + height + ", Dietary Restrictions: " + dietaryRestrictions + ", Cuisine Preferences: " + cuisinePreferences);
-        // You can also set the profile image if you have a path saved
-        // For example:
-        // String imagePath = prefs.getString("profileImage", null);
-        // if (imagePath != null) {
-        //     profileImage.setImageURI(Uri.parse(imagePath));
-        // }
     }
 }
