@@ -26,11 +26,21 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button btnSetting = view.findViewById(R.id.btnSetting);
+        Button btnReview = view.findViewById(R.id.btnReview);
         btnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Make sure to use getActivity() to get the context
-                Intent intent = new Intent(getActivity(), SettingsActivity.class);
+                // Use Fragment's context to start the activity
+                Intent intent = new Intent(requireActivity(), SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Use Fragment's context to start the activity
+                Intent intent = new Intent(requireActivity(), ProfileHomeActivity.class);
                 startActivity(intent);
             }
         });

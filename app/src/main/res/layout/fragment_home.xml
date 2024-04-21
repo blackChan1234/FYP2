@@ -4,14 +4,25 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recommend Fragment"
-        android:layout_gravity="center" />
+        android:id="@+id/textViewRecommend"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Recommend Fragment"
+    android:layout_gravity="center" />
 
     <Button
         android:id="@+id/btnSetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Setting" />
+        android:text="Setting"
+        android:layout_gravity="bottom|right"
+    />
+
+    <Button
+        android:id="@+id/btnReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="profile"
+        android:layout_gravity="bottom|left"
+        />
 </FrameLayout>

@@ -52,7 +52,7 @@
         android:layout_marginBottom="40dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingBottom="32dp">
+        android:paddingBottom="3dp">
 
         <!-- Replicate this Button structure for as many buttons as you need -->
 
