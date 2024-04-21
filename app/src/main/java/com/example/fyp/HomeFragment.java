@@ -19,12 +19,11 @@ public class HomeFragment extends Fragment {
     private Runnable sliderRunnable;
 
     public HomeFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
@@ -33,7 +32,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewPager2 = view.findViewById(R.id.viewPager);
-        int[] images = {R.drawable.default_restaurant, R.drawable.ba6d6a3282c393ca02f9bd49b880d054, R.drawable.food}; // 图片资源 ID
+        int[] images = {R.drawable.default_restaurant, R.drawable.restaurant2, R.drawable.restaurant3};
         ImageSliderAdapter adapter = new ImageSliderAdapter(images);
         viewPager2.setAdapter(adapter);
 
