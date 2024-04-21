@@ -148,7 +148,7 @@
     <string name="cuisine_preferences">Cuisine Preferences</string>
     <string name="profile_image_description">Profile Image</string>
     <string name="age">Age</string>
-
+    <string name="address_1"><![CDATA[G/F(PORTION) & 2/F, COMMERCIAL CENTRE, CHEUNG HONG ESTATE, TSING YI, KWAI CHUNG, NEW TERRITORIES]]></string>
 
 
 </resources>

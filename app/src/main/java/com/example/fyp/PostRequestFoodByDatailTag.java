@@ -1,5 +1,8 @@
 package com.example.fyp;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -14,6 +17,7 @@ import java.nio.charset.StandardCharsets;
 public class PostRequestFoodByDatailTag extends AsyncTask<String, Void, String> {
     private String postData = "";
     private String result;
+    private Intent intent;
 
     public PostRequestFoodByDatailTag(String postData) {
         this.postData = postData;
@@ -54,7 +58,7 @@ public class PostRequestFoodByDatailTag extends AsyncTask<String, Void, String> 
     public String getResult() {
         return result;
     }
-
+    public void setIntent(filter intent){this.intent = intent;}
     @Override
     protected void onPostExecute(String result) {
 
@@ -63,6 +67,11 @@ public class PostRequestFoodByDatailTag extends AsyncTask<String, Void, String> 
             Log.d("PostRequestTask", "length: " + result.length());
 
             this.result = result;
+
+            intent.putExtra("result", result);
+            Intent intent = new Intent(this, filterResult.class);
+            request.setIntent(intent);
+            startActivity(intent);
 
 
         } else {

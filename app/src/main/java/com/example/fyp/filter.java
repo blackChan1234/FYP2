@@ -1,22 +1,19 @@
 package com.example.fyp;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.Manifest;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -29,11 +26,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class filter extends AppCompatActivity {
-    public static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private LinearLayout dropdownLayout;
     private ImageButton filter_hide,area_hide,preference_hide,cuisine_hide;
     private SearchView searchView;
-    private searchFrame fragment;
+
+    //private searchFrame fragment;
+
+    private RestaurantsFragment fragment;
+
     CheckBox checkBoxAsian,checkBoxEuropean,checkBoxGerman,checkBoxGreek,checkBoxJapanese
             ,checkBoxMediterranean,checkBoxMexican,checkBoxDinner,checkBoxLunch,checkBoxMainCourse,
             checkBoxMainDish,checkBoxSalad,checkBoxCentralAndWestern,checkBoxWanChai,checkBoxEastern,
@@ -156,21 +156,7 @@ public class filter extends AppCompatActivity {
         }
 
     }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission was granted
-                    // Proceed with location-related operations
-                } else {
-                    // Permission denied
-                    // Handle the denial properly, possibly disabling features or informing the user
-                }
-                break;
-        }
-    }
+
     ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,24 +165,14 @@ public class filter extends AppCompatActivity {
 
         searchView = findViewById(R.id.search_view);
         searchView.setSubmitButtonEnabled(true);
-         viewPager = findViewById(R.id.viewPager);
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
-            // Request the permission
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-        } else {
-            // Permission has already been granted
-            // You can initiate location-based operations here, or this might be a no-op if the actual use is in a fragment or later in the activity lifecycle
-        }
-
+        // viewPager = findViewById(R.id.viewPager);
         initAllCheckboxes();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 try {
-                    Search(query);
+                 Search(query);
+
 
 
                 } catch (UnsupportedEncodingException e) {
@@ -258,7 +234,7 @@ public class filter extends AppCompatActivity {
     @SuppressLint("SuspiciousIndentation")
     public void Search(String query) throws UnsupportedEncodingException {
         checkAllCheckboxes();
-        String apiURL = "http://10.0.2.2/database/api_PostRestaurantByInfo.php";
+        String apiURL = "http://10.0.2.2/phpcode/fypTest/api_PostRestaurantByInfo.php";
 
         String postData="";
         //    ArrayList dishType =new ArrayList(),cuisine =new ArrayList();
@@ -302,9 +278,15 @@ public class filter extends AppCompatActivity {
         PostRequestFoodByDatailTag request =new PostRequestFoodByDatailTag(postData);
             request.execute(apiURL);
             String result =request.getResult();
-        showSearchResults(query);
 
-        Log.d("Search",query);
+            AppCompatActivity app = this;
+            request.setIntent(this);
+
+         fragment =new RestaurantsFragment();
+        fragment.setPostResult(result);
+//        setupViewPager(viewPager);
+
+
     }
     public void hideFilter(ImageButton btn, LinearLayout dropdownLayout) {
         if (dropdownLayout.getVisibility() == View.VISIBLE) {
@@ -315,16 +297,17 @@ public class filter extends AppCompatActivity {
             btn.setImageResource(R.drawable.baseline_arrow_drop_up_24);
         }
     }
-    private void showSearchResults(String query) {
-        Intent intent = new Intent(this, filterResult.class);
-        intent.putExtra("query", query);
-        startActivity(intent);
+
+    private void showSearchResults(String result) {
+
     }
+
+
     private void setupViewPager(ViewPager viewPager) {
         filter.ViewPagerAdapter adapter = new filter.ViewPagerAdapter(getSupportFragmentManager());
 
         // Add Fragments to the adapter. Each fragment corresponds to a tab.
-        adapter.addFragment(fragment, "result");
+        //adapter.addFragment(fragment, "result");
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);
