@@ -12,10 +12,13 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class PostRequestFoodByDatailTag extends AsyncTask<String, Void, String> {
-    String postData="";
-    public PostRequestFoodByDatailTag( String postData){
-        this.postData =postData;
+    private String postData = "";
+    private String result;
+
+    public PostRequestFoodByDatailTag(String postData) {
+        this.postData = postData;
     }
+
     @Override
     protected String doInBackground(String... params) {
         try {
@@ -51,12 +54,20 @@ public class PostRequestFoodByDatailTag extends AsyncTask<String, Void, String> 
         }
     }
 
+    public String getResult() {
+        return result;
+    }
+
     @Override
     protected void onPostExecute(String result) {
         // 在这里处理从 PHP 脚本返回的结果
         if (result != null) {
             Log.d("PostRequestTask", "Received response: " + result);
+            Log.d("PostRequestTask", "length: " + result.length());
             // 在这里处理返回的 JSON 数据
+            this.result = result;
+
+
         } else {
             Log.e("PostRequestTask", "Failed to receive response");
             Log.e("PostRequestTask", postData);
@@ -64,3 +75,7 @@ public class PostRequestFoodByDatailTag extends AsyncTask<String, Void, String> 
         }
     }
 }
+
+
+
+

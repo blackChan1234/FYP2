@@ -155,6 +155,7 @@ public class filter extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 try {
                     Search(query);
+
                 } catch (UnsupportedEncodingException e) {
                     throw new RuntimeException(e);
                 }
@@ -214,7 +215,7 @@ public class filter extends AppCompatActivity {
     @SuppressLint("SuspiciousIndentation")
     public void Search(String query) throws UnsupportedEncodingException {
         checkAllCheckboxes();
-        String apiURL = "http://10.0.2.2/phpcode/fypTest/api_postFoodByDatailTag.php";
+        String apiURL = "http://10.0.2.2/phpcode/fypTest/api_PostRestaurantByInfo.php";
 
         String postData="";
         //    ArrayList dishType =new ArrayList(),cuisine =new ArrayList();
@@ -232,7 +233,9 @@ public class filter extends AppCompatActivity {
 
         }
             if(cuisine.size()>0){
-                postData += "&cuisines=";
+                if(dishType.size()>0)
+                    postData +="&";
+                postData += "cuisines=";
                 for (int i = 0; i < cuisine.size(); i++) {
                     String json = gson.toJson(cuisine.get(i));
                     postData+=json;
@@ -242,8 +245,22 @@ public class filter extends AppCompatActivity {
                 }
 
             }
+//        $District = $_POST['address'] ?? '';
+            if( !district.isEmpty()){
+                if(cuisine.size()>0 ||dishType.size()>0)
+                        postData +="&";
+                postData +="district="+district;
 
-        new PostRequestFoodByDatailTag(postData).execute(apiURL);
+            }
+
+//        $name = $_POST['name'] ?? '';
+//        setupViewPager
+        PostRequestFoodByDatailTag request =new PostRequestFoodByDatailTag(postData);
+            request.execute(apiURL);
+            String result =request.getResult();
+        RestaurantsFragment fragment =new RestaurantsFragment();
+        fragment.setPostResult(result);
+
         Log.d("Search",query);
     }
     public void hideFilter(ImageButton btn, LinearLayout dropdownLayout) {
