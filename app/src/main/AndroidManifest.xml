@@ -37,6 +37,9 @@
             android:exported="false"
             android:label="@string/ProfileActivity" />
         <activity
+            android:name=".PersonActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

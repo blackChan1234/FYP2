@@ -25,10 +25,7 @@ public class PostRequestFoodByDatailTag extends AsyncTask<String, Void, String> 
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
 
-            // 准备要发送的数据
-//            String postData = "vegan=false"; // 示例数据，请替换为实际数据
 
-            // 发送数据
             OutputStream os = connection.getOutputStream();
             os.write(postData.getBytes(StandardCharsets.UTF_8));
             os.flush();
