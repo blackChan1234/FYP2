@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.Savesystem.Restaurant.NearbyRestaurant;
 import com.example.Savesystem.Restaurant.Restaurant;
 import com.example.fyp.adapters.RestaurantAdapter;
 
@@ -95,10 +94,15 @@ public class RestaurantsFragment extends Fragment implements LocationListener {
 
 
 
-    private void jsonStringToRestaurant(ArrayList<Restaurant> restaurantList, String jsonString) throws JSONException {
+    private boolean jsonStringToRestaurant(ArrayList<Restaurant> restaurantList, String jsonString) throws JSONException {
+        if (jsonString == null) {
+            // Handle the case where jsonString is null
+            return false;
+        }
+
         JSONArray jsonArray = new JSONArray(jsonString);
 
-        NearbyRestaurant r1;
+        Restaurant r1;
         for (int i = 0; i < jsonArray.length(); i++) {
             Object item = jsonArray.get(i);
             if (item instanceof JSONObject) {
@@ -107,14 +111,14 @@ public class RestaurantsFragment extends Fragment implements LocationListener {
                     continue;
                 String name = obj.optString("name", "No name provided");
                 String address = obj.optString("address", "No address provided");
-                r1= new NearbyRestaurant();
+                r1= new Restaurant();
                 r1.setLoc(address);
                 r1.setName(name);
                 restaurantList.add(r1);
 
             }
         }
-
+            return true;
     }
 
     private void initiateFetchRestaurants() {
@@ -122,7 +126,7 @@ public class RestaurantsFragment extends Fragment implements LocationListener {
         try {
             ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
-            jsonStringToRestaurant(restaurantList, postResult);
+            boolean isSuccess= jsonStringToRestaurant(restaurantList, postResult);
 
             if(!restaurantList.isEmpty()&&! (restaurantList.size() == 0)) {
                 RestaurantAdapter = new RestaurantAdapter(restaurantList, this);

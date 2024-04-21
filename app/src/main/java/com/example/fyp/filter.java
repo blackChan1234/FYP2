@@ -27,6 +27,7 @@ public class filter extends AppCompatActivity {
             checkBoxWongTaiSin,checkBoxKwunTong,checkBoxTsuenWan,checkBoxTuenMun,checkBoxYuenLong,
             checkBoxNorth,checkBoxTaiPo,checkBoxShaTin,checkBoxSaiKung,checkBoxIslands,checkBoxSideDish;
     ArrayList dishType =new ArrayList(),cuisine =new ArrayList();
+
     private String district="";
 
     public void initAllCheckboxes(){
@@ -142,6 +143,7 @@ public class filter extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -255,6 +257,7 @@ public class filter extends AppCompatActivity {
 
 //        $name = $_POST['name'] ?? '';
 //        setupViewPager
+
         PostRequestFoodByDatailTag request =new PostRequestFoodByDatailTag(postData);
             request.execute(apiURL);
             String result =request.getResult();
