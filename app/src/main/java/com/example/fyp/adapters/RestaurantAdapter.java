@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.Savesystem.Restaurant.Restaurant;
@@ -19,11 +18,11 @@ import java.util.List;
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.NearbyRestaurantViewHolder> {
 
     private List<Restaurant> restaurantList;
-    private Fragment fragment;
+//    private Fragment fragment;
 
-    public RestaurantAdapter(List<Restaurant> restaurantList, Fragment f) {
+    public RestaurantAdapter(List<Restaurant> restaurantList) {
         this.restaurantList = restaurantList;
-        this.fragment = f;
+//        this.fragment = f;
     }
 
     @NonNull

@@ -65,7 +65,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <LinearLayout
             android:id="@+id/filter"
             android:layout_width="match_parent"
@@ -491,40 +494,27 @@
 
                 </TableLayout>
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="138dp"
-                    android:background="#F5F5F5"
-                    app:tabIndicatorColor="#FF6F00"
-                    app:tabSelectedTextColor="@color/black"
-                    app:tabMode="scrollable"
-                    app:tabTextColor="#ced0d3">
 
-                    <com.google.android.material.tabs.TabItem
-                        android:text="Home"
-                        tools:ignore="TouchTargetSizeCheck" android:layout_height="wrap_content" android:layout_width="wrap_content" />
-                    <com.google.android.material.tabs.TabItem
-                        android:text="Recommand" android:layout_height="wrap_content" android:layout_width="wrap_content"/>
-                    <com.google.android.material.tabs.TabItem
-                        android:text="Booking" android:layout_height="wrap_content" android:layout_width="wrap_content"/>
 
-                    <com.google.android.material.tabs.TabItem
-                        android:text="Menu"
-                        tools:ignore="TouchTargetSizeCheck"  android:layout_height="wrap_content" android:layout_width="wrap_content"/>
-                </com.google.android.material.tabs.TabLayout>
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/viewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/tabLayout"/>
 
-            </LinearLayout>
 
         </LinearLayout>
 
 
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/nearFactsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView1"
+            android:layout_marginTop="8dp"/>
+</LinearLayout>
     </ScrollView>
 
     <ListView

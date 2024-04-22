@@ -17,9 +17,16 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.Savesystem.Restaurant.Restaurant;
+import com.example.fyp.adapters.RestaurantAdapter;
 import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -27,10 +34,12 @@ import java.util.List;
 
 public class filter extends AppCompatActivity {
     private LinearLayout dropdownLayout;
-    private ImageButton filter_hide,area_hide,preference_hide,cuisine_hide;
+    private ImageButton filter_hide,Dish_Types_hide,area_hide,preference_hide,cuisine_hide;
     private SearchView searchView;
+    private RecyclerView FactsRecyclerView;
 
     //private searchFrame fragment;
+    RestaurantAdapter RestaurantAdapter;
 
     private RestaurantsFragment fragment;
 
@@ -165,7 +174,8 @@ public class filter extends AppCompatActivity {
 
         searchView = findViewById(R.id.search_view);
         searchView.setSubmitButtonEnabled(true);
-         viewPager = findViewById(R.id.viewPager);
+//         viewPager = findViewById(R.id.viewPager);
+        FactsRecyclerView = findViewById(R.id.nearFactsRecyclerView);
         initAllCheckboxes();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -199,6 +209,14 @@ public class filter extends AppCompatActivity {
             public void onClick(View v) {
                 dropdownLayout = findViewById(R.id.filter);
                 hideFilter(filter_hide, dropdownLayout);
+            }
+        });
+        Dish_Types_hide= findViewById(R.id.Dish_Types_hide);
+        Dish_Types_hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dropdownLayout = findViewById(R.id.Dish_Types);
+                hideFilter(Dish_Types_hide, dropdownLayout);
             }
         });
 
@@ -297,7 +315,7 @@ public class filter extends AppCompatActivity {
             Log.d("avc", "onCreate: "+result);
                 fragment.setPostResult(result);
             Log.d("Delay", "這是延遲2秒後的執行");
-            setupViewPager(viewPager);
+//            setupViewPager(viewPager);
 
                 dropdownLayout = findViewById(R.id.filter);
                 hideFilter(filter_hide, dropdownLayout);
@@ -307,6 +325,9 @@ public class filter extends AppCompatActivity {
                 hideFilter(preference_hide, dropdownLayout);
                 dropdownLayout = findViewById(R.id.cuisine);
                 hideFilter(cuisine_hide, dropdownLayout);
+                initiateFetchRestaurants(result);
+                dropdownLayout = findViewById(R.id.Dish_Types);
+                hideFilter(Dish_Types_hide, dropdownLayout);
         }
     }, 2000);
 //        showSearchResults(postData);
@@ -322,25 +343,49 @@ public class filter extends AppCompatActivity {
         }
     }
 
-    private void showSearchResults(String result) {
-            Intent intent = new Intent(this, filterResult.class);
-            intent.putExtra("result", result);
 
-            startActivity(intent);
+
+    private ArrayList<Restaurant> jsonStringToRestaurant(ArrayList<Restaurant> restaurantList, String jsonString) throws JSONException {
+
+
+        JSONArray jsonArray = new JSONArray(jsonString);
+
+        Restaurant r1;
+        for (int i = 0; i < jsonArray.length(); i++) {
+            Object item = jsonArray.get(i);
+            if (item instanceof JSONObject) {
+                JSONObject obj = (JSONObject) item;
+                if(obj.isNull("name") || obj.length()<3)
+                    continue;
+                String name = obj.optString("name", "No name provided");
+                String address = obj.optString("address", "No address provided");
+                r1= new Restaurant();
+                r1.setLoc(address);
+                r1.setName(name);
+                restaurantList.add(r1);
+
+            }
+        }
+        return restaurantList;
     }
 
+    private void initiateFetchRestaurants(String result) {
 
-    private void setupViewPager(ViewPager viewPager) {
-        filter.ViewPagerAdapter adapter = new filter.ViewPagerAdapter(getSupportFragmentManager());
+        try {
+            ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
+            jsonStringToRestaurant(restaurantList, result);
 
-        adapter.addFragment(new NearbyRestaurantsFragment(),"Booking");
-        adapter.addFragment(fragment,"menu");
-        // Set the adapter onto the view pager
-        viewPager.setAdapter(adapter);
+            if(!restaurantList.isEmpty()&&! (restaurantList.size() == 0)) {
+                RestaurantAdapter = new RestaurantAdapter(restaurantList);
+                FactsRecyclerView.setAdapter(RestaurantAdapter);
+            }
+
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
     }
-
-
 
     public class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

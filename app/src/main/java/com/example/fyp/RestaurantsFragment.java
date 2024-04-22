@@ -128,7 +128,7 @@ public class RestaurantsFragment extends Fragment implements LocationListener {
             jsonStringToRestaurant(restaurantList, postResult);
 
             if(!restaurantList.isEmpty()&&! (restaurantList.size() == 0)) {
-                RestaurantAdapter = new RestaurantAdapter(restaurantList, this);
+                RestaurantAdapter = new RestaurantAdapter(restaurantList);
                 nearFactsRecyclerView.setAdapter(RestaurantAdapter);
             }
 
@@ -139,7 +139,7 @@ public class RestaurantsFragment extends Fragment implements LocationListener {
     }
 
     public void setPostResult(String postResult){
-        this.postResult = postResult;
+//        this.postResult = postResult;
         this.postResult = postResult;
         this.readyToLoad = true;
 
