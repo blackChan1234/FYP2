@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -39,10 +41,18 @@ import okhttp3.Response;
 public class RecommendFragment extends Fragment {
     private List<Food> meals = new ArrayList<>();
     private int currentMealIndex = 0;
+    private CheckBox chkDinner, chkJapanese,chkBreakfast,chkLunch,chkMexican,chkAsian,chkGerman;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recommend, container, false);
+        chkDinner = view.findViewById(R.id.chkDinner);
+        chkJapanese = view.findViewById(R.id.chkJapanese);
+        chkBreakfast = view.findViewById(R.id.chkBreakfast);
+        chkAsian = view.findViewById(R.id.chkAsian);
+        chkLunch = view.findViewById(R.id.chkLunch);
+        chkMexican = view.findViewById(R.id.chkMexican);
+        chkGerman = view.findViewById(R.id.chkGerman);
 
         Button btnJumpToFoodRecommend = view.findViewById(R.id.btnJumpToFoodRecommend);
 
@@ -102,8 +112,8 @@ public class RecommendFragment extends Fragment {
     private void displayMeal(final TextView mealNameTextView, final ImageView foodimageView) {
         if (getActivity() == null || meals.isEmpty()) return;
 
-        final Food currentMeal = meals.get(currentMealIndex % meals.size());
-        currentMealIndex++; // Prepare index for the next call
+        final Food currentMeal = meals.get(currentMealIndex);
+        currentMealIndex = (currentMealIndex + 1) % meals.size();
 
         getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -121,7 +131,32 @@ public class RecommendFragment extends Fragment {
     }
     private void fetchJsonAndPopulateUI(final TextView mealNameTextView, final ImageView foodimageView, final Dialog dialog) {
         OkHttpClient client = new OkHttpClient();
-        String url = "http://10.0.2.2/database/getData.php"; // Ensure this URL is correct and accessible
+        HttpUrl.Builder urlBuilder = HttpUrl.parse("http://10.0.2.2/database/getData.php").newBuilder();
+
+        // Add query parameters based on checkbox states
+        if (chkDinner.isChecked()) {
+            urlBuilder.addQueryParameter("meal", "dinner");
+        }
+        if (chkJapanese.isChecked()) {
+            urlBuilder.addQueryParameter("cuisine", "Japanese");
+        }
+        if (chkLunch.isChecked()) {
+            urlBuilder.addQueryParameter("meal", "lunch");
+        }
+        if (chkBreakfast.isChecked()) {
+            urlBuilder.addQueryParameter("meal", "Breakfast");
+        }
+        if (chkAsian.isChecked()) {
+            urlBuilder.addQueryParameter("cuisine", "Asian");
+        }
+        if (chkMexican.isChecked()) {
+            urlBuilder.addQueryParameter("cuisine", "Mexican");
+        }
+        if (chkGerman.isChecked()) {
+            urlBuilder.addQueryParameter("cuisine", "German");
+        }
+
+        String url = urlBuilder.build().toString();
 
         Request request = new Request.Builder()
                 .url(url)
@@ -224,31 +259,27 @@ public class RecommendFragment extends Fragment {
     }
 
 
-    private ArrayList<Nutrition> parseNutritions(JSONObject jsonObject) {
-        ArrayList<Nutrition> nutritions = new ArrayList<>();
-        try {
-            // Correctly navigate to the "nutrients" array inside the "nutrition" object.
+            private ArrayList<Nutrition> parseNutritions(JSONObject jsonObject) {
+                ArrayList<Nutrition> nutritions = new ArrayList<>();
+                try {
+                    if (jsonObject.has("nutrients")) {
+                        JSONArray nutrientsArray = jsonObject.getJSONArray("nutrients");
+                        for (int i = 0; i < nutrientsArray.length(); i++) {
+                            JSONObject nutrient = nutrientsArray.getJSONObject(i);
 
-                if (jsonObject.has("nutrients")) {
-                    JSONArray nutrientsArray = jsonObject.getJSONArray("nutrients");
-
-                    // Iterate over the array of nutrients.
-                    for (int i = 0; i < nutrientsArray.length(); i++) {
-                        JSONObject nutrient = nutrientsArray.getJSONObject(i);
-
-                        // Create a Nutrition object for each nutrient in the array.
-                        Nutrition nutrition = new Nutrition(
-                                nutrient.getString("name"),
-                                nutrient.getDouble("amount"),
-                                nutrient.getString("unit")
-                        );
+                            Nutrition nutrition = new Nutrition(
+                                    nutrient.getString("name"),
+                                    nutrient.getDouble("amount"),
+                                    nutrient.getString("unit")
+                            );
+                            nutritions.add(nutrition);  // Correctly adding the nutrition to the list
+                        }
                     }
-
+                } catch (JSONException e) {
+                    Log.e("parseNutritions", "Error parsing nutrients", e);
+                }
+                return nutritions;
             }
-        } catch (JSONException e) {
-        }
-        return nutritions;
-    }
 
 
 

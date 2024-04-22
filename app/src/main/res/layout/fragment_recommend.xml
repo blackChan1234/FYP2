@@ -3,15 +3,93 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recommend Fragment"
-        android:layout_gravity="center" />
-    <Button
-        android:id="@+id/btnJumpToFoodRecommend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go to Food Recommendation"
- />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recommend Fragment"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="When to eat?"
+            android:layout_marginTop="20dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/chkDinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dinner"/>
+
+            <CheckBox
+                android:id="@+id/chkBreakfast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Breakfast"/>
+
+            <CheckBox
+                android:id="@+id/chkLunch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lunch"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What country?"
+            android:layout_marginTop="20dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+
+            <CheckBox
+                android:id="@+id/chkMexican"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mexican"/>
+
+            <CheckBox
+                android:id="@+id/chkJapanese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Japanese"/>
+
+            <CheckBox
+                android:id="@+id/chkAsian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Asian"/>
+
+            <CheckBox
+                android:id="@+id/chkGerman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="German"/>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnJumpToFoodRecommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go to Food Recommendation"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
 </FrameLayout>
