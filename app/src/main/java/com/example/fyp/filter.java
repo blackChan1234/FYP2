@@ -3,6 +3,8 @@ package com.example.fyp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -27,7 +29,11 @@ public class filter extends AppCompatActivity {
     private LinearLayout dropdownLayout;
     private ImageButton filter_hide,area_hide,preference_hide,cuisine_hide;
     private SearchView searchView;
+
+    //private searchFrame fragment;
+
     private RestaurantsFragment fragment;
+
     CheckBox checkBoxAsian,checkBoxEuropean,checkBoxGerman,checkBoxGreek,checkBoxJapanese
             ,checkBoxMediterranean,checkBoxMexican,checkBoxDinner,checkBoxLunch,checkBoxMainCourse,
             checkBoxMainDish,checkBoxSalad,checkBoxCentralAndWestern,checkBoxWanChai,checkBoxEastern,
@@ -41,36 +47,36 @@ public class filter extends AppCompatActivity {
     public void initAllCheckboxes(){
         // Define and initialize each checkbox
 
-         checkBoxAsian = findViewById(R.id.asian);
-         checkBoxEuropean = findViewById(R.id.european);
-         checkBoxGerman = findViewById(R.id.german);
-         checkBoxGreek = findViewById(R.id.Greek);
-         checkBoxJapanese = findViewById(R.id.Japanese);
-         checkBoxMediterranean = findViewById(R.id.Mediterranean);
-         checkBoxMexican = findViewById(R.id.Mexican);
-         checkBoxDinner = findViewById(R.id.Dinner);
-         checkBoxLunch = findViewById(R.id.Lunch);
-         checkBoxMainCourse = findViewById(R.id.Main_course);
-         checkBoxMainDish = findViewById(R.id.Main_dish);
-         checkBoxSalad = findViewById(R.id.Salad);
-         checkBoxSideDish = findViewById(R.id.Side_dish);
-         checkBoxCentralAndWestern = findViewById(R.id.central_and_western);
-         checkBoxWanChai = findViewById(R.id.wan_chai);
-         checkBoxEastern = findViewById(R.id.eastern);
-         checkBoxSouthern = findViewById(R.id.southern);
-         checkBoxYauTsimMong = findViewById(R.id.yau_tsim_mong);
-         checkBoxShamShuiPo = findViewById(R.id.sham_shui_po);
-         checkBoxKowloonCity = findViewById(R.id.kowloon_city);
-         checkBoxWongTaiSin = findViewById(R.id.wong_tai_sin);
-         checkBoxKwunTong = findViewById(R.id.kwun_tong);
-         checkBoxTsuenWan = findViewById(R.id.tsuen_wan);
-         checkBoxTuenMun = findViewById(R.id.tuen_mun);
-         checkBoxYuenLong = findViewById(R.id.yuen_long);
-         checkBoxNorth = findViewById(R.id.north);
-         checkBoxTaiPo = findViewById(R.id.tai_po);
-         checkBoxShaTin = findViewById(R.id.sha_tin);
-         checkBoxSaiKung = findViewById(R.id.sai_kung);
-         checkBoxIslands = findViewById(R.id.islands);
+        checkBoxAsian = findViewById(R.id.asian);
+        checkBoxEuropean = findViewById(R.id.european);
+        checkBoxGerman = findViewById(R.id.german);
+        checkBoxGreek = findViewById(R.id.Greek);
+        checkBoxJapanese = findViewById(R.id.Japanese);
+        checkBoxMediterranean = findViewById(R.id.Mediterranean);
+        checkBoxMexican = findViewById(R.id.Mexican);
+        checkBoxDinner = findViewById(R.id.Dinner);
+        checkBoxLunch = findViewById(R.id.Lunch);
+        checkBoxMainCourse = findViewById(R.id.Main_course);
+        checkBoxMainDish = findViewById(R.id.Main_dish);
+        checkBoxSalad = findViewById(R.id.Salad);
+        checkBoxSideDish = findViewById(R.id.Side_dish);
+        checkBoxCentralAndWestern = findViewById(R.id.central_and_western);
+        checkBoxWanChai = findViewById(R.id.wan_chai);
+        checkBoxEastern = findViewById(R.id.eastern);
+        checkBoxSouthern = findViewById(R.id.southern);
+        checkBoxYauTsimMong = findViewById(R.id.yau_tsim_mong);
+        checkBoxShamShuiPo = findViewById(R.id.sham_shui_po);
+        checkBoxKowloonCity = findViewById(R.id.kowloon_city);
+        checkBoxWongTaiSin = findViewById(R.id.wong_tai_sin);
+        checkBoxKwunTong = findViewById(R.id.kwun_tong);
+        checkBoxTsuenWan = findViewById(R.id.tsuen_wan);
+        checkBoxTuenMun = findViewById(R.id.tuen_mun);
+        checkBoxYuenLong = findViewById(R.id.yuen_long);
+        checkBoxNorth = findViewById(R.id.north);
+        checkBoxTaiPo = findViewById(R.id.tai_po);
+        checkBoxShaTin = findViewById(R.id.sha_tin);
+        checkBoxSaiKung = findViewById(R.id.sai_kung);
+        checkBoxIslands = findViewById(R.id.islands);
     }
 
     private void checkAllCheckboxes() {
@@ -123,7 +129,7 @@ public class filter extends AppCompatActivity {
     private void verifyDishTypeForAdd(String checkboxName, boolean isChecked) {
         Log.d("verifyDishTypeForAdd("+checkboxName+")",   " is " + (isChecked ? "checked" : "unchecked"));
         if (isChecked) {
-        String dishTypeWhitelist [] ={"dinner", "lunch", "main course", "main dish", "salad", "side dish"};
+            String dishTypeWhitelist [] ={"dinner", "lunch", "main course", "main dish", "salad", "side dish"};
 
             for (int i = 0; i < dishTypeWhitelist.length; i++) {
                 if (checkboxName.equals(dishTypeWhitelist[i])) {
@@ -159,13 +165,14 @@ public class filter extends AppCompatActivity {
 
         searchView = findViewById(R.id.search_view);
         searchView.setSubmitButtonEnabled(true);
-         viewPager = findViewById(R.id.viewPager);
+        viewPager = findViewById(R.id.viewPager);
         initAllCheckboxes();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 try {
                     Search(query);
+
 
 
                 } catch (UnsupportedEncodingException e) {
@@ -208,6 +215,7 @@ public class filter extends AppCompatActivity {
         preference_hide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 dropdownLayout = findViewById(R.id.preference);
                 hideFilter(preference_hide, dropdownLayout);
             }
@@ -244,38 +252,65 @@ public class filter extends AppCompatActivity {
             }
 
         }
-            if(cuisine.size()>0){
-                if(dishType.size()>0)
-                    postData +="&";
-                postData += "cuisines=";
-                for (int i = 0; i < cuisine.size(); i++) {
-                    String json = gson.toJson(cuisine.get(i));
-                    postData+=json;
+        if(cuisine.size()>0){
+            if(dishType.size()>0)
+                postData +="&";
+            postData += "cuisines=";
+            for (int i = 0; i < cuisine.size(); i++) {
+                String json = gson.toJson(cuisine.get(i));
+                postData+=json;
 //                    postData += URLEncoder.encode( json, "UTF-8");
-                    if(i< cuisine.size()-1)
-                        postData +=  ",";
-                }
-
+                if(i< cuisine.size()-1)
+                    postData +=  ",";
             }
+
+        }
 //        $District = $_POST['address'] ?? '';
-            if( !district.isEmpty()){
-                if(cuisine.size()>0 ||dishType.size()>0)
-                        postData +="&";
-                postData +="district="+district;
+        if( !district.isEmpty()){
+            if(cuisine.size()>0 ||dishType.size()>0)
+                postData +="&";
+            postData +="district="+district;
 
-            }
+        }
 
 //        $name = $_POST['name'] ?? '';
 //        setupViewPager
 
         PostRequestFoodByDatailTag request =new PostRequestFoodByDatailTag(postData);
-            request.execute(apiURL);
-            String result =request.getResult();
-         fragment =new RestaurantsFragment();
-        fragment.setPostResult(result);
-//        setupViewPager(viewPager);
+        request.execute(apiURL);
 
-        Log.d("Search",query);
+
+//            AppCompatActivity app = this;
+//            request.setIntent(this);
+
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        fragment =new RestaurantsFragment();
+// 使用postDelayed來安排任務，例如延遲1秒（1000毫秒）
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // 這裡放置延遲後要執行的代碼
+                String result =request.getResult();
+
+
+                Log.d("avc", "onCreate: "+result);
+                fragment.setPostResult(result);
+                Log.d("Delay", "這是延遲2秒後的執行");
+                setupViewPager(viewPager);
+
+                dropdownLayout = findViewById(R.id.filter);
+                hideFilter(filter_hide, dropdownLayout);
+                dropdownLayout = findViewById(R.id.area);
+                hideFilter(area_hide, dropdownLayout);
+                dropdownLayout = findViewById(R.id.preference);
+                hideFilter(preference_hide, dropdownLayout);
+                dropdownLayout = findViewById(R.id.cuisine);
+                hideFilter(cuisine_hide, dropdownLayout);
+            }
+        }, 2000);
+//        showSearchResults(postData);
+
     }
     public void hideFilter(ImageButton btn, LinearLayout dropdownLayout) {
         if (dropdownLayout.getVisibility() == View.VISIBLE) {
@@ -287,12 +322,20 @@ public class filter extends AppCompatActivity {
         }
     }
 
+    private void showSearchResults(String result) {
+        Intent intent = new Intent(this, filterResult.class);
+        intent.putExtra("result", result);
+
+        startActivity(intent);
+    }
+
+
     private void setupViewPager(ViewPager viewPager) {
         filter.ViewPagerAdapter adapter = new filter.ViewPagerAdapter(getSupportFragmentManager());
 
-        // Add Fragments to the adapter. Each fragment corresponds to a tab.
-        adapter.addFragment(fragment, "result");
 
+        adapter.addFragment(new NearbyRestaurantsFragment(),"Booking");
+        adapter.addFragment(fragment,"menu");
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);
     }
@@ -330,4 +373,3 @@ public class filter extends AppCompatActivity {
     }
 
 }
-
