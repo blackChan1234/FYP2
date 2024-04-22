@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
         // Add Fragments to the adapter. Each fragment corresponds to a tab.
         adapter.addFragment(new HomeFragment(), "Home");
         adapter.addFragment(new RecommendFragment(), "Recommend");
-        adapter.addFragment(new BookingFragment(), "Booking");
-        adapter.addFragment(new MenuFragment(), "Menu");
+        //adapter.addFragment(new BookingFragment(), "Booking");
+     //   adapter.addFragment(new MenuFragment(), "Menu");
         adapter.addFragment(new NearbyRestaurantsFragment(),"Nearby Restaurants");
 
         // Set the adapter onto the view pager
